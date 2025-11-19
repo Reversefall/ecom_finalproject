@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+
+            $table->string('username')->unique();   // Username duy nhất
+            $table->string('full_name');            // Họ tên
+            $table->string('email')->unique();      // Email duy nhất
+            $table->string('phone_number')->nullable(); // SĐT có thể null
+            $table->string('password');             // Mật khẩu
+            $table->string('role');             // Mật khẩu
+
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps(); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
