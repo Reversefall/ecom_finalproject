@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable(); // SĐT có thể null
             $table->string('password');             // Mật khẩu
             $table->string('role');             // Mật khẩu
+            $table->boolean('status');             // Trạng thái
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
