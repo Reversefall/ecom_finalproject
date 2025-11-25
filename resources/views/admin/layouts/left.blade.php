@@ -1,8 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a th:href="@{/admin/dashboard}">
-            <img th:src="@{/image/carcare.jpg}" alt="" class="dark-logo" />
-            <img th:src="@{/image/carcare.jpg}" alt="" class="light-logo" />
+        <a href="{{ route('admin.dashboard') }}">
+            <img src="{{ asset('assets_admin/vendors/images/logo-icon.png') }}" alt="" class="dark-logo" />
+            <img src="{{ asset('assets_admin/vendors/images/logo-icon.png') }}" alt="" class="light-logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -12,7 +12,7 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a th:href="@{/admin/dashboard}" class="dropdown-toggle no-arrow">
+                    <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow">
                         <span class="micon fa fa-home"></span><span class="mtext">Trang chủ</span>
                     </a>
                 </li>

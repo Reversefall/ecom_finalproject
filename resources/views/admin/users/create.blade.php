@@ -13,7 +13,7 @@
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a th:href="@{/admin/dashboard}">Trang quản trị</a>
+                                <a href="{{ route('admin.dashboard') }}">Trang quản trị</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Quản lý Tài Khoản

@@ -84,7 +84,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <img th:src="@{/assets_admin/vendors/images/photo1.jpg}" alt="" />
+                                <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
                                 <h3>Lea R. Frith</h3>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -102,12 +102,12 @@
         <div class="dropdown">
             <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                 <span class="user-icon">
-                    <img th:src="@{/assets_admin/vendors/images/photo1.jpg}" alt="" />
+                    <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
                 </span>
                 <span class="user-name">Admin</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                <a class="dropdown-item" th:href="@{/logout}"><i class="dw dw-logout"></i>Đăng xuất</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i>Đăng xuất</a>
             </div>
         </div>
     </div>

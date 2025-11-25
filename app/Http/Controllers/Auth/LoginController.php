@@ -27,7 +27,6 @@ class LoginController extends Controller
 
         $credentials = $request->only('username', 'password');
 
-        // Log thông tin user tìm thấy
         $user = User::where('username', $request->username)->first();
         Log::info('Login attempt user:', [
             'username_input' => $request->username,
@@ -35,14 +34,11 @@ class LoginController extends Controller
             'db_user_password' => $user?->password,
         ]);
 
-        // Nếu user tồn tại, kiểm tra mật khẩu trùng hay không
         if ($user) {
             Log::info('Password check:', [
                 'result' => Hash::check($request->password, $user->password)
             ]);
         }
-
-        // Test Auth::attempt() trực tiếp
         $attempt = Auth::attempt($credentials);
         Log::info('Auth attempt result:', [
             'credentials' => $credentials,
@@ -57,14 +53,14 @@ class LoginController extends Controller
             ]);
 
             if ($role === 'admin') {
-                return redirect()->route('admin.users.index');
+                return redirect()->route('admin.dashboard');
             }
 
             if ($role === 'seller') {
-                return redirect('/seller/dashboard');
+                return redirect()->route('seller.dashboard');
             }
 
-            return redirect('/user/dashboard');
+            return redirect('index');
         }
 
         Log::warning('Login failed: wrong username or password');
@@ -74,8 +70,7 @@ class LoginController extends Controller
         ]);
     }
 
-
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
         return redirect()->route('login');

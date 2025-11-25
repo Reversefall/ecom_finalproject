@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Seller\SellerDashboardController;
+use App\Http\Controllers\Seller\SellerProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,19 +14,35 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // Khu vực ADMIN
 // 
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
-    Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('admin.users.create');
-    Route::post('/users/store', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.users.store');
-    Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin.users.edit');
-    Route::post('/users/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin.users.update');
-    Route::get('/users/toggle-status/{id}', [App\Http\Controllers\Admin\UserController::class, 'toggleStatus'])->name('admin.users.toggle-status');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/users/store', [AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::post('/users/update/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::get('/users/toggle-status/{id}', [AdminUserController::class, 'toggleStatus'])->name('admin.users.toggle-status');
 });
 
 // Khu vực SELLER
+
+Route::prefix('seller')->middleware(['auth', 'is_seller'])->group(function () {
+    Route::get('/dashboard', [SellerDashboardController::class, 'index'])->name('seller.dashboard');
+
+    Route::get('/products', [SellerProductController::class, 'index'])->name('seller.products.index');
+    Route::get('/products/create', [SellerProductController::class, 'create'])->name('seller.products.create');
+    Route::post('/products/store', [SellerProductController::class, 'store'])->name('seller.products.store');
+    Route::get('/products/edit/{id}', [SellerProductController::class, 'edit'])->name('seller.products.edit');
+    Route::put('/products/update/{id}', [SellerProductController::class, 'update'])->name('seller.products.update');
+    Route::get('/products/toggle-status/{id}', [SellerProductController::class, 'toggleStatus'])->name('seller.products.toggle-status');
+    Route::delete('/products/images/{image}', [SellerProductController::class, 'destroyImage'])
+        ->name('seller.products.images.destroy');
+});
+
 // Khu vực USER

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('seller.layouts.master')
 <style>
     .switch {
         position: relative;
@@ -56,7 +56,7 @@
         white-space: nowrap;
     }
 </style>
-@section('page-title', 'Quản lý Tài Khoản')
+@section('page-title', 'Quản lý Sản phẩm')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Quản lý Tài Khoản</h4>
+                        <h4>Quản lý Sản phẩm</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -73,7 +73,7 @@
                                 <a href="{{ route('admin.dashboard') }}">Quản trị</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý Tài Khoản
+                                Quản lý Sản phẩm
                             </li>
                         </ol>
                     </nav>
@@ -96,56 +96,62 @@
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Quản lý Tài Khoản</h4>
+                <h4 class="text-blue h4">Quản lý Sản phẩm</h4>
             </div>
             <div class="pb-20">
                 <table class="data-table table stripe hover nowrap">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tên đăng nhập</th>
-                            <th>Quyền</th>
-                            <th>Họ tên</th>
-                            <th>Số điện thoại</th>
-                            <th>Email</th>
+                            <th>Ảnh</th> <!-- cột mới -->
+                            <th>Tên sản phẩm</th>
+                            <th>Danh mục</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
                             <th>Trạng thái</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($users as $emp)
+                        @foreach($products as $product)
                         <tr>
-                            <td>{{ $emp->id }}</td>
-                            <td>{{ $emp->username }}</td>
-                            <td>{{ strtoupper($emp->role) }}</td>
-                            <td>{{ $emp->full_name }}</td>
-                            <td>{{ $emp->phone_number }}</td>
-                            <td>{{ $emp->email }}</td>
+                            <td>{{ $product->product_id }}</td>
 
+                            <!-- Ảnh đầu tiên -->
+                            <td>
+                                @if($product->images->count() > 0)
+                                <img src="{{ asset($product->images->first()->image_url) }}"
+                                    alt="Ảnh sản phẩm"
+                                    style="height:50px; object-fit:cover;">
+                                @else
+                                <span class="text-muted">Chưa có</span>
+                                @endif
+                            </td>
+
+                            <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->category->category_name ?? 'Không có' }}</td>
+                            <td>{{ number_format($product->price) }} đ</td>
+                            <td>{{ $product->current_quantity }}</td>
                             <td>
                                 <label class="switch">
-                                    <input
-                                        type="checkbox"
-                                        {{ $emp->status == 1 ? 'checked' : '' }}
-                                        onclick="toggleStatus({{ $emp->id }})">
+                                    <input type="checkbox" {{ $product->status == 1 ? 'checked' : '' }}
+                                        onclick="toggleStatus({{ $product->product_id }})">
                                     <span class="slider round"></span>
                                 </label>
                             </td>
-
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('admin.users.edit', $emp->id) }}">
+                                        <a class="dropdown-item" href="{{ route('seller.products.edit', $product->product_id) }}">
                                             <i class="dw dw-edit2"></i> Cập nhật
                                         </a>
                                     </div>
                                 </div>
                             </td>
-
                         </tr>
                         @endforeach
                     </tbody>
@@ -173,7 +179,7 @@
     });
 
     function toggleStatus(id) {
-        window.location.href = '/admin/users/toggle-status/' + id;
+        window.location.href = '/seller/products/toggle-status/' + id;
     }
 </script>
 @endsection
