@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -36,7 +37,7 @@ class UserController extends Controller
             'phone_number'     => $request->phone_number,
             'role'    => $request->role,
             'status'    => 1,
-            'password'  => bcrypt($request->password),
+            'password' => Hash::make($request->password)
         ]);
 
         return redirect()->route('admin.users.index')->with('create', true);
@@ -60,7 +61,7 @@ class UserController extends Controller
     public function toggleStatus(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->status = $user->status == 1 ? 0 : 1;
+        $user->status = $user->status == 1 ? 0 : 1; 
         $user->save();
 
         return redirect()->route('admin.users.index')->with('updateStatus', true);
