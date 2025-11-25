@@ -104,7 +104,7 @@
                 <span class="user-icon">
                     <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
                 </span>
-                <span class="user-name">Admin</span>
+                <span class="user-name">Người bán</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                 <a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i>Đăng xuất</a>

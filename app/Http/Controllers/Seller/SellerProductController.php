@@ -14,7 +14,6 @@ class SellerProductController extends Controller
 {
     public function index()
     {
-        // Lấy tất cả sản phẩm của seller đang đăng nhập
         $products = Product::where('seller_id', Auth::id())->with('images')->get();
 
         return view('seller.products.index', compact('products'));
