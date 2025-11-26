@@ -31,4 +31,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id');
     }
+    public function groups()
+    {
+        return $this->hasMany(Group::class, 'product_id');
+    }
 }

@@ -6,11 +6,17 @@ use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Moderator\ModeratorDashboardController;
+use App\Http\Controllers\Moderator\ModeratorGroupController;
 use App\Http\Controllers\Seller\SellerDashboardController;
 use App\Http\Controllers\Seller\SellerProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
+
+Route::get('/groups', [HomeController::class, 'groups'])->name('groups');
+Route::get('/groups/{id}', [HomeController::class, 'detailGroups'])->name('groups.detail');
+
 Route::get('/products', [HomeController::class, 'products'])->name('products');
 Route::get('/products/{id}', [HomeController::class, 'detail'])->name('products.detail');
 
@@ -48,4 +54,19 @@ Route::prefix('seller')->middleware(['auth', 'is_seller'])->group(function () {
         ->name('seller.products.images.destroy');
 });
 
+// Khu vực MODERATOR
+
+Route::prefix('moderator')->middleware(['auth', 'is_moderator'])->group(function () {
+    Route::get('/dashboard', [ModeratorDashboardController::class, 'index'])->name('moderator.dashboard');
+    Route::get('/groups', [ModeratorGroupController::class, 'index'])->name('moderator.groups.index');
+    Route::get('/groups/detail/{id}', [ModeratorGroupController::class, 'detail'])->name('moderator.groups.detail');
+    Route::get('/groups/toggle-status/{id}', [ModeratorGroupController::class, 'updateStatus'])->name('moderator.groups.updateStatus');
+});
+
 // Khu vực USER
+
+Route::prefix('user')->middleware(['auth', 'is_moderator'])->group(function () {
+    Route::get('/group/create/{id}', [ModeratorGroupController::class, 'index'])->name('moderator.groups.index');
+    Route::get('/groups/detail/{id}', [ModeratorGroupController::class, 'detail'])->name('moderator.groups.detail');
+    Route::get('/groups/toggle-status/{id}', [ModeratorGroupController::class, 'updateStatus'])->name('moderator.groups.updateStatus');
+});

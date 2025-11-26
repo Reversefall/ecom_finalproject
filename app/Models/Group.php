@@ -10,7 +10,9 @@ class Group extends Model
 
     protected $fillable = [
         'creator_id',
+        'product_id',
         'group_name',
+        'description',
         'deadline',
         'status',
     ];
@@ -18,6 +20,11 @@ class Group extends Model
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function members()

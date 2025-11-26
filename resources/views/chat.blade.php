@@ -43,24 +43,7 @@
                                         </p>
                                     </a>
                                 </li>
-                                <li class="active">
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-green"></i> online
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-green"></i> online
-                                        </p>
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a href="#">
                                         <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
@@ -71,76 +54,7 @@
                                         </p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-warning"></i> active 4
-                                            min
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-warning"></i> active 3
-                                            min
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-orange"></i>
-                                            offline
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-orange"></i>
-                                            offline
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-orange"></i>
-                                            offline
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-orange"></i>
-                                            offline
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
-                                        <h3 class="clearfix">John Doe</h3>
-                                        <p>
-                                            <i class="fa fa-circle text-light-orange"></i>
-                                            offline
-                                        </p>
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a href="#">
                                         <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
@@ -164,12 +78,11 @@
                                         <img src="{{ asset('assets_admin/vendors/images/profile-photo.jpg') }}" alt="" />
                                     </div>
                                     <div class="chat-profile-name">
-                                        <h3>Rachel Curtis</h3>
-                                        <span>New York, USA</span>
+                                        <h3>Nhóm Mua Chung Iphone</h3>
+                                        <span>5 người tham gia</span>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                         <div class="chat-box">
                             <div class="chat-desc customscroll">

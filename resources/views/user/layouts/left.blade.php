@@ -13,29 +13,32 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="/" class="dropdown-toggle no-arrow">
-                        <span class="micon fa fa-home"></span><span class="mtext">Khám phá</span>
+                        <span class="micon bi bi-compass"></span>
+                        <span class="mtext">Khám phá</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/groups" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-file-text"></span>
+                        <span class="mtext">Nhóm mua</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="/posts" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-box"></span><span class="mtext">Tin đăng</span>
+                        <span class="micon bi bi-person-badge"></span>
+                        <span class="mtext">Người bán</span>
                     </a>
                 </li>
-
+                @if (Auth::check())
                 <li>
-                    <a href="/posts" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-box"></span><span class="mtext">Người bán</span>
+                    <a href="/user/groups" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-people"></span>
+                        <span class="mtext">Nhóm của tôi</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="/user/group" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-box"></span><span class="mtext">Nhóm mua chung</span>
-                    </a>
-                </li>
-
-
+                @endif
             </ul>
         </div>
     </div>

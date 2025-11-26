@@ -19,6 +19,27 @@
         transform: scale(1.1);
         border: 2px solid #007bff;
     }
+
+    .product-box {
+        position: relative;
+        /* cần để badge vị trí tuyệt đối */
+    }
+
+    .members-count {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #e74c3c;
+        color: #fff;
+        font-weight: bold;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-size: 0.9rem;
+    }
 </style>
 <div class="pd-ltr-20 xs-pd-20-10">
     <div class="min-height-200px">
@@ -62,8 +83,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-lg-6 col-md-12">
                     <div class="product-detail-desc pd-20 card-box height-100-p">
                         <h4 class="mb-20 pt-20">{{ $product->product_name }}</h4>
@@ -83,10 +102,10 @@
 
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <a href="#" class="btn btn-primary btn-block">Đăng Tin Mua Chung</a>
+                                <a href="/user/group/create/{{ $product->product_id }}" class="btn btn-primary btn-block">Tạo Nhóm Mua Chung</a>
                             </div>
                             <div class="col-md-6 col-6">
-                                <a href="#" class="btn btn-outline-primary btn-block">Xem Người Bán</a>
+                                <a href="/user/seller/{{ $product->seller_id }}" class="btn btn-outline-primary btn-block">Xem Người Bán</a>
                             </div>
                         </div>
                     </div>
@@ -94,49 +113,46 @@
 
             </div>
         </div>
-        <h4 class="mb-20">Các Tin Mua Chung Của Sản Phẩm Này</h4>
+        <h4 class="mb-20">Các Nhóm Mua Chung Của Sản Phẩm Này</h4>
+
+        @if($product->groups->count() > 0)
         <div class="product-list">
             <ul class="row">
+                @foreach($product->groups as $group)
                 <li class="col-lg-4 col-md-6 col-sm-12">
                     <div class="product-box">
                         <div class="producct-img">
-                            <img src="vendors/images/product-img1.jpg" alt="" />
-                        </div>
-                        <div class="product-caption">
-                            <h4><a href="#">Gufram Bounce Black</a></h4>
-                            <div class="price"><del>$55.5</del><ins>$49.5</ins></div>
-                            <a href="#" class="btn btn-outline-primary">Xem Tin</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="product-box">
-                        <div class="producct-img">
-                            <img src="vendors/images/product-img2.jpg" alt="" />
-                        </div>
-                        <div class="product-caption">
-                            <h4><a href="#">Gufram Bounce White</a></h4>
-                            <div class="price"><del>$75.5</del><ins>$50</ins></div>
-                            <a href="#" class="btn btn-outline-primary">Xem Tin</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="product-box">
-                        <div class="producct-img">
-                            <img src="vendors/images/product-img3.jpg" alt="" />
-                        </div>
-                        <div class="product-caption">
-                            <h4><a href="#">Contrast Lace-Up Sneakers</a></h4>
-                            <div class="price">
-                                <ins>$80</ins>
+                            @if($product->images->count() > 0)
+                            <img src="{{ asset($product->images->first()->image_url) }}" alt="{{ $product->product_name }}" />
+                            @else
+                            <img src="{{ asset('assets_admin/vendors/images/default-product.png') }}" alt="No image" />
+                            @endif
+
+                            <div class="members-count">
+                                {{ $group->members->count() }}
                             </div>
-                            <a href="#" class="btn btn-outline-primary">Xem Tin</a>
+                        </div>
+
+                        <div class="product-caption">
+                            <h4>
+                                <a href="{{ url('/groups/detail/'.$group->group_id) }}">
+                                    {{ $group->group_name }}
+                                </a>
+                            </h4>
+                            <div class="price">
+                                Người tạo: {{ $group->creator->full_name ?? 'Không có' }}
+                            </div>
+                            <a href="{{ url('/groups/detail/'.$group->group_id) }}" class="btn btn-outline-primary">Xem Nhóm</a>
                         </div>
                     </div>
+
                 </li>
+                @endforeach
             </ul>
         </div>
+        @else
+        <p>Hiện chưa có nhóm mua chung cho sản phẩm này.</p>
+        @endif
     </div>
 </div>
 </div>

@@ -60,6 +60,10 @@ class LoginController extends Controller
                 return redirect()->route('seller.dashboard');
             }
 
+            if ($role === 'moderator') {
+                return redirect()->route('moderator.dashboard');
+            }
+
             return redirect('');
         }
 
