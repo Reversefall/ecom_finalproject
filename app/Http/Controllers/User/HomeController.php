@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Group;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -19,14 +21,7 @@ class HomeController extends Controller
         return view('index', compact('products'));
     }
 
-    public function chat()
-    {
-        $products = Product::where('status', 1)
-            ->with('images')
-            ->get();
 
-        return view('chat', compact('products'));
-    }
 
     public function products()
     {
@@ -68,7 +63,7 @@ class HomeController extends Controller
             });
         }
 
-        $groups = $query->paginate(6)->withQueryString();
+        $groups = $query->paginate(3)->withQueryString();
 
         return view('groups', compact('groups', 'categories'));
     }
@@ -84,7 +79,14 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
+        $isMember = $group->members->where('customer_id', Auth::id())->count() > 0;
+        return view('groups-details', compact('group', 'relatedGroups', 'isMember'));
+    }
 
-        return view('groups-details', compact('group', 'relatedGroups'));
+
+    public function detailSeller($id)
+    {
+        $seller = User::with(['products'])->findOrFail($id);
+        return view('seller-details', compact('seller'));
     }
 }

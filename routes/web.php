@@ -10,6 +10,7 @@ use App\Http\Controllers\Moderator\ModeratorDashboardController;
 use App\Http\Controllers\Moderator\ModeratorGroupController;
 use App\Http\Controllers\Seller\SellerDashboardController;
 use App\Http\Controllers\Seller\SellerProductController;
+use App\Http\Controllers\User\UserGroupController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
@@ -19,6 +20,8 @@ Route::get('/groups/{id}', [HomeController::class, 'detailGroups'])->name('group
 
 Route::get('/products', [HomeController::class, 'products'])->name('products');
 Route::get('/products/{id}', [HomeController::class, 'detail'])->name('products.detail');
+
+Route::get('/detailSeller/{id}', [HomeController::class, 'detailSeller'])->name('detailSeller');
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -64,9 +67,11 @@ Route::prefix('moderator')->middleware(['auth', 'is_moderator'])->group(function
 });
 
 // Khu vực USER
-
-Route::prefix('user')->middleware(['auth', 'is_moderator'])->group(function () {
-    Route::get('/group/create/{id}', [ModeratorGroupController::class, 'index'])->name('moderator.groups.index');
-    Route::get('/groups/detail/{id}', [ModeratorGroupController::class, 'detail'])->name('moderator.groups.detail');
-    Route::get('/groups/toggle-status/{id}', [ModeratorGroupController::class, 'updateStatus'])->name('moderator.groups.updateStatus');
+Route::prefix('user')->middleware(['auth', 'is_user'])->group(function () {
+    Route::get('/groups', [UserGroupController::class, 'index'])->name('user.groups.index');
+    Route::get('/groups/create/{id}', [UserGroupController::class, 'create'])->name('user.groups.create');
+    Route::post('/groups/store/{product}', [UserGroupController::class, 'store'])->name('user.groups.store');
+    Route::get('/groups/join/{id}', [UserGroupController::class, 'joinGroup'])->name('user.groups.join');
+    Route::get('/groups/chat/{id}', [UserGroupController::class, 'chat'])->name('user.groups.chat');
+    Route::post('/groups/chat/{id}', [UserGroupController::class, 'send'])->name('user.groups.send');
 });

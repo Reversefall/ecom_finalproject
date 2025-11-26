@@ -13,7 +13,7 @@ class Group extends Model
         'product_id',
         'group_name',
         'description',
-        'deadline',
+        'max_quantity',
         'status',
     ];
 

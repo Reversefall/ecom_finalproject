@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Group;
+use App\Models\GroupMember;
+use App\Models\GroupMessage;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Services\GitHubUploadService;
@@ -12,118 +15,140 @@ use Illuminate\Support\Facades\Auth;
 
 class UserGroupController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::where('seller_id', Auth::id())->with('images')->get();
+        $userId = Auth::id();
 
-        return view('seller.products.index', compact('products'));
-    }
+        $categories = Category::withCount(['products as group_count' => function ($q) {
+            $q->whereHas('groups', function ($q2) {
+                $q2->where('status', 'processing');
+            });
+        }])->get();
 
-    public function create()
-    {
-        $categories = Category::all();
-
-        return view('seller.products.create', compact('categories'));
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'product_name'     => 'required|string|max:255',
-            'category_id'      => 'required|integer',
-            'price'            => 'required|numeric|min:0',
-            'current_quantity' => 'required|integer|min:0',
-            'images.*'         => 'image|max:5120',
-        ]);
-
-        $product = Product::create([
-            'product_name'     => $request->product_name,
-            'category_id'      => $request->category_id,
-            'price'            => $request->price,
-            'current_quantity' => $request->current_quantity,
-            'status'           => 1,
-            'seller_id'        => Auth::id(),
-        ]);
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $img) {
-
-                $path = "products/" . $product->product_id . "/" . time() . "_" . $img->getClientOriginalName();
-
-                $url = app(GitHubUploadService::class)
-                    ->uploadFile($img, $path);
-
-                $product->images()->create([
-                    'image_url' => $url
-                ]);
+        $query = Group::with([
+            'creator',
+            'product' => function ($q) {
+                $q->with('category', 'images');
             }
+        ])
+            ->where('status', 'processing')
+            ->whereHas('members', function ($q) use ($userId) {
+                $q->where('customer_id', $userId);
+            });
+
+        if ($request->has('category') && $request->category != '') {
+            $categoryId = $request->category;
+
+            $query->whereHas('product', function ($q) use ($categoryId) {
+                $q->where('category_id', $categoryId);
+            });
         }
 
-        return redirect()->route('seller.products.index')->with('create', true);
+        $groups = $query->paginate(6)->withQueryString();
+
+        return view('mygroups', compact('categories', 'groups'));
     }
 
-    public function edit($id)
+
+    public function joinGroup($groupId)
     {
-        $product = Product::where('seller_id', Auth::id())
-            ->findOrFail($id);
-        $categories = Category::all();
-        return view('seller.products.edit', compact('product', 'categories'));
-    }
+        $userId = Auth::id();
 
-    public function update(Request $request, $id)
-    {
-        $product = Product::where('seller_id', Auth::id())->findOrFail($id);
+        $group = Group::findOrFail($groupId);
 
-        $request->validate([
-            'product_name'     => 'required|string|max:255',
-            'category_id'      => 'required|integer',
-            'price'            => 'required|numeric|min:0',
-            'current_quantity' => 'required|integer|min:0',
-            'images.*'         => 'image|max:5120',
-        ]);
+        $exists = GroupMember::where('group_id', $groupId)
+            ->where('customer_id', $userId)
+            ->exists();
 
-        $product->update([
-            'product_name'     => $request->product_name,
-            'category_id'      => $request->category_id,
-            'price'            => $request->price,
-            'current_quantity' => $request->current_quantity,
-        ]);
-
-        if ($request->hasFile('images')) {
-            $product->images()->delete();
-
-            foreach ($request->file('images') as $img) {
-
-                $path = "products/" . $product->product_id . "/" . time() . "_" . $img->getClientOriginalName();
-
-                $url = app(GitHubUploadService::class)
-                    ->uploadFile($img, $path);
-
-                $product->images()->create([
-                    'image_url' => $url
-                ]);
-            }
+        if ($exists) {
+            return back()->with('warning', 'Bạn đã tham gia nhóm này rồi.');
         }
 
-        return redirect()->route('seller.products.index')->with('update', true);
+        GroupMember::create([
+            'group_id'    => $groupId,
+            'customer_id' => $userId,
+            'joined_at'   => now(),
+        ]);
+
+        return back()->with('success', 'Tham gia nhóm thành công!');
     }
 
-
-    public function toggleStatus($id)
+    public function create($productId)
     {
-        $product = Product::where('seller_id', Auth::id())
-            ->findOrFail($id);
-
-        $product->status = $product->status == 1 ? 0 : 1;
-        $product->save();
-
-        return redirect()->route('seller.products.index')->with('updateStatus', true);
+        $product = Product::findOrFail($productId);
+        return view('create-group', compact('product'));
     }
 
-    public function destroyImage($id)
+    public function store(Request $request, $productId)
     {
-        $image = ProductImage::findOrFail($id);
-        $image->delete();
-        return response()->json(['message' => 'Xóa ảnh thành công']);
+        $userId = Auth::id();
+
+        $product = Product::findOrFail($productId);
+
+        $exists = Group::where('product_id', $productId)
+            ->where('creator_id', $userId)
+            ->where('status', 'processing')
+            ->exists();
+
+        if ($exists) {
+            return back()->with('warning', 'Bạn đã tạo nhóm mua chung cho sản phẩm này rồi!');
+        }
+
+        $group = Group::create([
+            'creator_id' => $userId,
+            'product_id' => $productId,
+            'group_name' => $product->product_name . ' - Nhóm Mua Chung',
+            'description' => $request->description ?? '',
+            'status' => 'processing',
+        ]);
+
+        GroupMember::create([
+            'group_id'    => $group->group_id,
+            'customer_id' => $userId,
+            'joined_at'   => now(),
+        ]);
+
+        return redirect()->route('user.groups.index')->with('success', 'Tạo nhóm mua chung thành công!');
+    }
+
+    public function chat($groupId)
+    {
+        $group = Group::with(['members.customer'])->findOrFail($groupId);
+
+        $members = $group->members->filter(function ($m) {
+            return $m->customer_id != Auth::id();
+        });
+
+        foreach ($members as $m) {
+            $lastActive = $m->customer->last_active ?? null;
+            $m->isOnline = $lastActive && $lastActive >= now()->subMinutes(5);
+        }
+
+        $messages = GroupMessage::with('customer')
+            ->where('group_id', $groupId)
+            ->orderBy('sent_at', 'asc')
+            ->get();
+
+        return view('chat', compact('group', 'members', 'messages'));
+    }
+
+    public function send(Request $request, $groupId)
+    {
+        $request->validate([
+            'message' => 'required|string'
+        ]);
+
+        $msg = GroupMessage::create([
+            'group_id' => $groupId,
+            'customer_id' => Auth::id(),
+            'message_text' => $request->message,
+            'sent_at' => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => $msg,
+            'html' => view('components.chat_message', ['msg' => $msg])->render()
+        ]);
     }
 }

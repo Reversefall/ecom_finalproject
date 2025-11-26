@@ -93,24 +93,16 @@
                             <ins>{{ number_format($product->price,0,',','.') }} ₫</ins>
                         </div>
 
-                        <div class="mx-w-150">
-                            <div class="form-group">
-                                <label class="text-blue">Quantity</label>
-                                <input type="number" value="1" class="form-control" name="quantity" />
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <a href="/user/group/create/{{ $product->product_id }}" class="btn btn-primary btn-block">Tạo Nhóm Mua Chung</a>
+                                <a href="/user/groups/create/{{ $product->product_id }}" class="btn btn-primary btn-block">Tạo Nhóm Mua Chung</a>
                             </div>
                             <div class="col-md-6 col-6">
-                                <a href="/user/seller/{{ $product->seller_id }}" class="btn btn-outline-primary btn-block">Xem Người Bán</a>
+                                <a href="/detailSeller/{{ $product->seller_id }}" class="btn btn-outline-primary btn-block">Xem Người Bán</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <h4 class="mb-20">Các Nhóm Mua Chung Của Sản Phẩm Này</h4>
@@ -135,14 +127,14 @@
 
                         <div class="product-caption">
                             <h4>
-                                <a href="{{ url('/groups/detail/'.$group->group_id) }}">
+                                <a href="{{ url('/groups/'.$group->group_id) }}">
                                     {{ $group->group_name }}
                                 </a>
                             </h4>
                             <div class="price">
                                 Người tạo: {{ $group->creator->full_name ?? 'Không có' }}
                             </div>
-                            <a href="{{ url('/groups/detail/'.$group->group_id) }}" class="btn btn-outline-primary">Xem Nhóm</a>
+                            <a href="{{ url('/groups/'.$group->group_id) }}" class="btn btn-outline-primary">Xem Nhóm</a>
                         </div>
                     </div>
 

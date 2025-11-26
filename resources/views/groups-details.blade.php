@@ -179,8 +179,21 @@
                                     Hãy tham khảo các nhóm đang mở để lựa chọn sản phẩm và nhóm phù hợp với nhu cầu của bạn!
                                 </p>
 
-
-                                <a href="{{ url('/user/groups/join/'.$group->group_id) }}" class="btn btn-outline-primary">Tham gia nhóm</a>
+                                @if($group->status !== 'processing')
+                                <button class="btn btn-secondary" disabled>
+                                    Nhóm đã {{ $group->status }}
+                                </button>
+                                @else
+                                @if($isMember)
+                                <a href="{{ url('/user/groups/chat/'.$group->group_id) }}" class="btn btn-success">
+                                    Vào đoạn chat nhóm
+                                </a>
+                                @else
+                                <a href="{{ route('user.groups.join', $group->group_id) }}" class="btn btn-outline-primary">
+                                    Tham gia nhóm
+                                </a>
+                                @endif
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -212,12 +225,6 @@
                                             {{ $group->product->seller->full_name ?? 'Ẩn' }}
                                         </a></p>
                                     <p class="mb-1">Số lượng tồn: {{ $group->product->current_quantity }}</p>
-                                    <span class="badge {{ $group->product->status == 'active' ? 'badge-success' : 'badge-secondary' }}">
-                                        {{ ucfirst($group->product->status) }}
-                                    </span>
-                                </div>
-                                <div class="mt-2">
-                                    <p>Số nhóm đang mở: {{ $group->product->groups->count() }}</p>
                                 </div>
                             </div>
                             @endif

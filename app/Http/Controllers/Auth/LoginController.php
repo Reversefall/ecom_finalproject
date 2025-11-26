@@ -46,6 +46,10 @@ class LoginController extends Controller
         ]);
 
         if ($attempt) {
+            tap(Auth::user())->update([
+                'last_active' => now(),
+            ]);
+
 
             $role = Auth::user()->role;
             Log::info('User logged in successfully', [

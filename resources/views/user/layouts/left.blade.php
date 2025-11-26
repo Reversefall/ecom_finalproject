@@ -24,13 +24,7 @@
                         <span class="mtext">Nhóm mua</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="/posts" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-person-badge"></span>
-                        <span class="mtext">Người bán</span>
-                    </a>
-                </li>
+               
                 @if (Auth::check())
                 <li>
                     <a href="/user/groups" class="dropdown-toggle no-arrow">

@@ -43,6 +43,7 @@ class GroupSeeder extends Seeder
                 'description' => $data['description'],
                 'deadline' => now()->addDays(rand(3, 10)),
                 'status' => 'processing',
+                'max_quantity' => 10
             ]);
 
             GroupMember::create([
