@@ -5,16 +5,20 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Seller\SellerDashboardController;
 use App\Http\Controllers\Seller\SellerProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
 Route::get('/products', [HomeController::class, 'products'])->name('products');
+Route::get('/products/{id}', [HomeController::class, 'detail'])->name('products.detail');
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
+Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
 // Khu vực ADMIN
 // 

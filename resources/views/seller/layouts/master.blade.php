@@ -81,23 +81,27 @@
         @yield('content')
     </div>
 
+    {{-- jQuery (luôn đầu tiên) --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    {{-- DeskApp core scripts --}}
     <script src="{{ asset('assets_admin/vendors/scripts/core.js') }}"></script>
     <script src="{{ asset('assets_admin/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('assets_admin/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('assets_admin/vendors/scripts/layout-settings.js') }}"></script>
 
+    {{-- DataTables --}}
     <script src="{{ asset('assets_admin/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets_admin/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets_admin/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets_admin/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
 
+    {{-- Toastr --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     @yield('scripts')
+
 
 </body>
 

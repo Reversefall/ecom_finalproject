@@ -17,6 +17,25 @@ class HomeController extends Controller
         return view('index', compact('products'));
     }
 
+    public function chat()
+    {
+        $products = Product::where('status', 1)
+            ->with('images')
+            ->get();
+
+        return view('chat', compact('products'));
+    }
+
+    public function detail($id)
+    {
+        $product = Product::with('images')
+            ->where('status', 1)
+            ->findOrFail($id);
+
+        return view('user.details', compact('product'));
+    }
+
+
     public function products()
     {
         $products = Product::where('status', 1)

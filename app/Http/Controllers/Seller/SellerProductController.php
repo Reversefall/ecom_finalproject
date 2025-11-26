@@ -90,7 +90,6 @@ class SellerProductController extends Controller
         ]);
 
         if ($request->hasFile('images')) {
-
             $product->images()->delete();
 
             foreach ($request->file('images') as $img) {

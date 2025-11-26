@@ -131,7 +131,6 @@ jQuery(document).ready(function () {
 	// sidebar menu icon
 	$('.menu-icon, [data-toggle="left-sidebar-close"]').on("click", function () {
 		//$(this).toggleClass('open');
-		$("body").toggleClass("sidebar-shrink");
 		$(".left-side-bar").toggleClass("open");
 		$(".mobile-menu-overlay").toggleClass("show");
 	});

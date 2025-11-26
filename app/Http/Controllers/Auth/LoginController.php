@@ -60,7 +60,7 @@ class LoginController extends Controller
                 return redirect()->route('seller.dashboard');
             }
 
-            return redirect('index');
+            return redirect('');
         }
 
         Log::warning('Login failed: wrong username or password');
