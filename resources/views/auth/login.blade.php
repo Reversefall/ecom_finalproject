@@ -26,13 +26,10 @@
   <div class="login-header box-shadow">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="brand-logo">
-        <a href="/login">
-          <img src="{{ asset('assets_admin/vendors/images/deskapp-logo.svg') }}" alt="" />
-        </a>
       </div>
       <div class="login-menu">
         <ul>
-          <li><a href="/login">Đăng nhập</a></li>
+          <li><a href="/login">Login</a></li>
         </ul>
       </div>
     </div>
@@ -46,7 +43,7 @@
         <div class="col-md-6 col-lg-5">
           <div class="login-box bg-white box-shadow border-radius-10">
             <div class="login-title">
-              <h2 class="text-center text-primary">Đăng nhập</h2>
+              <h2 class="text-center text-primary">Login</h2>
             </div>
             <form method="POST" action="{{ url('/login') }}">
               @csrf
@@ -73,12 +70,12 @@
 
               <div class="row">
                 <div class="col-sm-12 mb-2">
-                  <button class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
+                  <button class="btn btn-primary btn-lg btn-block">Login</button>
                 </div>
 
                 <div class="col-sm-12 text-center">
                   <a href="{{ url('/register') }}" class="text-primary">
-                    Chưa có tài khoản? Đăng ký tại đây
+                    Don't have an account? Register
                   </a>
                 </div>
               </div>

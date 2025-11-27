@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('page-title', 'Trang sản phẩm')
+@section('page-title', 'Product Page')
 
 @section('content')
 <div class="bg0 m-t-23 p-b-140">
@@ -61,7 +61,7 @@
                 <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                     <div class="filter-col1 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
-                            Sắp xếp
+                            Sort By
                         </div>
 
                         <ul>

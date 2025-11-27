@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 
-@section('page-title', 'Giỏ hàng của tôi')
+@section('page-title', 'My Cart')
 
 @section('content')
 <style>
@@ -54,15 +54,15 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Giỏ hàng của tôi</h4>
+                        <h4>My Cart</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('index') }}">Trang chủ</a>
+                                <a href="{{ route('index') }}">Main Page</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Giỏ hàng
+                                Cart
                             </li>
                         </ol>
                     </nav>
@@ -79,7 +79,7 @@
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Thông tin đặt hàng</h4>
+                <h4 class="text-blue h4">Order Infomation</h4>
             </div>
 
             <div class="pd-20">
@@ -88,7 +88,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="full_name">Họ tên</label>
+                                <label for="full_name">FullName</label>
                                 <input type="text" name="full_name" id="full_name" class="form-control"
                                     required value="{{ old('full_name', Auth::user()->full_name) }}" style="padding:10px; border-radius:6px;">
                             </div>
@@ -105,14 +105,14 @@
                     <div class="row mb-3">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="phone">Số điện thoại</label>
+                                <label for="phone">PhoneNumber</label>
                                 <input type="text" name="phone" id="phone" class="form-control"
                                     required value="{{ old('phone', Auth::user()->phone_number) }}" style="padding:10px; border-radius:6px;">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="address">Địa chỉ</label>
+                                <label for="address">Address</label>
                                 <input type="text" name="address" id="address" class="form-control" required
                                     value="{{ old('address', Auth::user()->address ?? '') }}" style="padding:10px; border-radius:6px;">
                             </div>
@@ -127,14 +127,14 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" id="selectAll"></th>
-                                <th>Ảnh</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Nhóm</th>
-                                <th>Đơn giá</th>
-                                <th>Giảm giá</th>
-                                <th>Giá sau giảm</th>
-                                <th>Số lượng</th>
-                                <th>Tổng giá</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Group</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Price after discount</th>
+                                <th>Amount</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -157,7 +157,7 @@
                                     @if($product->images->count() > 0)
                                     <img src="{{ asset($product->images->first()->image_url) }}" alt="{{ $product->product_name }}" style="height:50px; object-fit:cover;">
                                     @else
-                                    <span class="text-muted">Chưa có</span>
+                                    <span class="text-muted">Don't have</span>
                                     @endif
                                 </td>
                                 <td>{{ $product->product_name }}</td>
@@ -176,10 +176,10 @@
 
                     <div class="mt-4 d-flex justify-content-end align-items-center">
                         <div class="total-wrapper mr-3">
-                            <strong>Tổng tiền: </strong>
+                            <strong>Total : </strong>
                             <span id="totalPrice">0 đ</span>
                         </div>
-                        <button type="submit" class="btn btn-primary px-4 py-2">Xác nhận đặt hàng</button>
+                        <button type="submit" class="btn btn-primary px-4 py-2">Confirm Order</button>
                     </div>
                 </form>
 
@@ -248,11 +248,11 @@
         e.preventDefault(); 
 
         Swal.fire({
-            title: 'Bạn có chắc chắn muốn đặt hàng?',
+            title: 'Are you sure to place this order?',
             icon: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Đồng ý',
-            cancelButtonText: 'Hủy',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
         }).then((result) => {
             if (result.isConfirmed) {
                 this.submit(); 

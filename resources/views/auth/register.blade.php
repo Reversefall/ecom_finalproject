@@ -26,13 +26,10 @@
   <div class="login-header box-shadow">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="brand-logo">
-        <a href="/register">
-          <img src="{{ asset('assets_admin/vendors/images/deskapp-logo.svg') }}" alt="" />
-        </a>
       </div>
       <div class="login-menu">
         <ul>
-          <li><a href="/register">Đăng ký tài khoản</a></li>
+          <li><a href="/register">Register</a></li>
         </ul>
       </div>
     </div>
@@ -46,20 +43,20 @@
         <div class="col-md-6 col-lg-5">
           <div class="login-box bg-white box-shadow border-radius-10">
             <div class="login-title">
-              <h2 class="text-center text-primary">Đăng ký tài khoản</h2>
+              <h2 class="text-center text-primary">Register</h2>
             </div>
             <form method="POST" action="{{ url('/register') }}">
               @csrf
 
               <div class="input-group custom">
-                <input type="text" name="full_name" class="form-control form-control-lg" placeholder="Họ và tên" required />
+                <input type="text" name="full_name" class="form-control form-control-lg" placeholder="FullName" required />
                 <div class="input-group-append custom">
                   <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                 </div>
               </div>
 
               <div class="input-group custom">
-                <input type="text" name="username" class="form-control form-control-lg" placeholder="Tên đăng nhập" required />
+                <input type="text" name="username" class="form-control form-control-lg" placeholder="UserName" required />
                 <div class="input-group-append custom">
                   <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                 </div>
@@ -72,14 +69,14 @@
               </div>
 
               <div class="input-group custom">
-                <input type="text" name="phone_number" class="form-control form-control-lg" placeholder="Số điện thoại" required />
+                <input type="text" name="phone_number" class="form-control form-control-lg" placeholder="Phone Number" required />
                 <div class="input-group-append custom">
                   <span class="input-group-text"><i class="dw dw-phone"></i></span>
                 </div>
               </div>
 
               <div class="input-group custom">
-                <input type="password" name="password" class="form-control form-control-lg" placeholder="Mật khẩu" required />
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required />
                 <div class="input-group-append custom">
                   <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                 </div>
@@ -93,13 +90,13 @@
 
               <div class="row">
                 <div class="col-sm-12 mb-2">
-                  <button class="btn btn-primary btn-lg btn-block">Đăng ký</button>
+                  <button class="btn btn-primary btn-lg btn-block">Register</button>
                 </div>
 
-                <!-- Nút quay về đăng nhập -->
+
                 <div class="col-sm-12 text-center">
                   <a href="{{ url('/login') }}" class="text-primary">
-                    Đã có tài khoản? Đăng nhập
+                    Have an account? Login
                   </a>
                 </div>
               </div>

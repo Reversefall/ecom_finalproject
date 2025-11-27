@@ -68,7 +68,7 @@
             opacity: 1;
         }
 
-        /* Animation khi toast ẩn */
+ 
         .toast.hide {
             opacity: 0;
             transform: translateX(100%);

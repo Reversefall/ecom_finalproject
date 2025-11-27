@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('page-title', 'Trang chủ')
+@section('page-title', 'Main Chat')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="chat-profile-name">
                                             <h3>{{ $group->group_name }}</h3>
-                                            <span>{{ $group->members->count() }} người tham gia</span>
+                                            <span>{{ $group->members->count() }} Member</span>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
 
                                         <div class="chat-body clearfix">
                                             <strong style="font-size:13px; color:#555;">
-                                                {{ $msg->customer->full_name ?? 'Không tên' }}
+                                                {{ $msg->customer->full_name ?? 'No Name' }}
                                             </strong>
                                             <p>{{ $msg->message_text }}</p>
                                             <div class="chat_time">
@@ -105,7 +105,7 @@
                                     <a href="#"><i class="fa fa-paperclip"></i></a>
                                 </div>
                                 <div class="chat_text_area">
-                                    <textarea id="chat-message" placeholder="Nhập tin nhắn…"></textarea>
+                                    <textarea id="chat-message" placeholder="Entering text...."></textarea>
                                 </div>
 
                                 <div class="chat_send">

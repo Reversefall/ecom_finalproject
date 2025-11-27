@@ -105,15 +105,15 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="title">
-                        <h4>Chi tiết nhóm</h4>
+                        <h4>Group Details</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="/">Trang chủ</a>
+                                <a href="/">Main Page</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Chi tiết nhóm
+                                Group Details
                             </li>
                         </ol>
                     </nav>
@@ -142,73 +142,74 @@
 
                             <div class="blog-caption">
                                 <h4 class="mb-10">{{ $group->group_name }}</h4>
-                                <p><strong>Người tạo:</strong> {{ $group->creator->full_name ?? 'Không có' }}</p>
-                                <p><strong>Giảm giá hiện tại:</strong> {{ $discount }}%</p>
+                                <p><strong>Creator</strong> {{ $group->creator->full_name ?? 'No One' }}</p>
+                                <p><strong>Current Discount :</strong> {{ $discount }}%</p>
 
-                                <p><strong>Trạng thái:</strong> {{ ucfirst($group->status) }}</p>
+                                <p><strong>Status</strong> {{ ucfirst($group->status) }}</p>
                                 <p>{{ $group->description }}</p>
 
-                                <h4 class="mb-10">Quy Tắc và Lợi Ích Khi Tham Gia Nhóm Mua Chung</h4>
+                                <h4 class="mb-10">Rule and Benefit for Group Buying</h4>
 
                                 <p>
-                                    Tham gia nhóm mua chung giúp bạn tiết kiệm chi phí, tận dụng khuyến mãi từ nhà cung cấp,
-                                    và đồng thời tạo cơ hội kết nối với những người có cùng nhu cầu. Dưới đây là các quy tắc và lợi ích chi tiết:
+                                    ining a group purchase helps you save costs, take advantage of supplier promotions, and also creates opportunities to connect with people who have similar needs. 
+                                    Below are the detailed rules and benefits:
                                 </p>
 
-                                <h5 class="mb-10">1. Quy tắc chung khi tham gia nhóm</h5>
+                               <h5 class="mb-10">1. General Rules for Joining a Group</h5>
                                 <ul>
-                                    <li>Mỗi nhóm mua chung sẽ có người tạo nhóm (creator) và các thành viên tham gia.</li>
-                                    <li>Thành viên cần đăng ký tham gia nhóm trước khi hết hạn nhóm (deadline).</li>
-                                    <li>Mỗi thành viên cam kết mua số lượng sản phẩm đã đăng ký, không được thay đổi tùy tiện.</li>
-                                    <li>Nhóm chỉ được xác nhận hoàn tất khi đạt số lượng tối thiểu quy định cho ưu đãi.</li>
-                                    <li>Trạng thái nhóm sẽ được cập nhật liên tục: <strong>pending</strong> (chưa đủ thành viên), <strong>processing</strong> (đang giao dịch), <strong>completed</strong> (hoàn tất), <strong>cancelled</strong> (hủy).</li>
+                                    <li>Each group purchase will have a creator and participating members.</li>
+                                    <li>Members must register to join the group before the group’s deadline.</li>
+                                    <li>Each member commits to purchasing the quantity of products they registered for and cannot change it arbitrarily.</li>
+                                    <li>The group will only be confirmed as completed when it reaches the minimum required quantity for the promotion.</li>
+                                    <li>The group status will be continuously updated: <strong>pending</strong> (insufficient members), <strong>processing</strong> (in progress), <strong>completed</strong> (completed), <strong>cancelled</strong> (cancelled).</li>
                                 </ul>
 
-                                <h5 class="mb-10">2. Lợi ích khi tham gia</h5>
+                                <h5 class="mb-10">2. Benefits of Joining</h5>
                                 <ul>
-                                    <li>Tiết kiệm chi phí nhờ mức giá ưu đãi nhóm mua chung.</li>
-                                    <li>Được giảm giá theo số lượng người tham gia:</li>
+                                    <li>Save costs thanks to the special group-purchase pricing.</li>
+                                    <li>Receive discounts based on the number of participants:</li>
                                     <ul>
-                                        <li>5 người tham gia → giảm 10%</li>
-                                        <li>10 người tham gia → giảm 12%</li>
-                                        <li>Mỗi 5 người tăng thêm → giảm thêm 2%</li>
+                                        <li>5 participants → 10% off</li>
+                                        <li>10 participants → 12% off</li>
+                                        <li>Every additional 5 participants → an extra 2% off</li>
                                     </ul>
-                                    <li>Có cơ hội kết nối và giao lưu với những người cùng mua chung sản phẩm.</li>
-                                    <li>Nhận được các khuyến mãi hoặc quà tặng đặc biệt từ nhà cung cấp nếu nhóm đủ điều kiện.</li>
-                                    <li>Quy trình mua minh bạch, được quản lý và theo dõi bởi người tạo nhóm.</li>
+                                    <li>Have the opportunity to connect and interact with others purchasing the same product.</li>
+                                    <li>Receive special promotions or gifts from the supplier if the group meets the required conditions.</li>
+                                    <li>Transparent purchasing process, managed and monitored by the group creator.</li>
                                 </ul>
 
-                                <h5 class="mb-10">3. Lưu ý khi tham gia</h5>
+                                <h5 class="mb-10">3. Notes When Participating</h5>
                                 <ul>
-                                    <li>Hãy chắc chắn số lượng mua phù hợp với nhu cầu của bạn trước khi tham gia.</li>
-                                    <li>Tham gia đúng thời gian để nhóm đủ số lượng và nhận ưu đãi.</li>
-                                    <li>Tránh hủy đơn sau khi nhóm đã xác nhận để không ảnh hưởng đến các thành viên khác.</li>
+                                    <li>Make sure the quantity you plan to purchase fits your needs before joining.</li>
+                                    <li>Join on time so the group can reach the required number of participants to receive the discount.</li>
+                                    <li>Avoid canceling your order after the group has been confirmed, as this may affect other members.</li>
                                 </ul>
 
                                 <p>
-                                    Khi tham gia nhóm mua chung, bạn vừa tiết kiệm chi phí vừa tận hưởng các quyền lợi cộng đồng.
-                                    Hãy tham khảo các nhóm đang mở để lựa chọn sản phẩm và nhóm phù hợp với nhu cầu của bạn!
+                                    By joining a group purchase, you not only save costs but also enjoy community benefits.
+                                    Check out the currently open groups to choose the products and groups that best suit your needs!
                                 </p>
+
 
                                 @if($group->status !== 'processing')
                                 <button class="btn btn-secondary" disabled>
-                                    Nhóm đã {{ $group->status }}
+                                    Group Has {{ $group->status }}
                                 </button>
                                 @else
                                 @if($isMember)
                                 <a href="{{ url('/user/groups/chat/'.$group->group_id) }}" class="btn btn-success">
-                                    Vào đoạn chat nhóm
+                                    Join the chat
                                 </a>
                                 <form action="{{ url('/user/groups/leave/'.$group->group_id) }}"
                                     method="POST"
                                     style="display:inline-block;"
-                                    onsubmit="return confirm('Bạn chắc chắn muốn rời nhóm này?')">
+                                    onsubmit="return confirm('Are you sure you want to leave this group?');">
                                     @csrf
-                                    <button class="btn btn-danger">Rời khỏi nhóm</button>
+                                    <button class="btn btn-danger">Leave the Group</button>
                                 </form>
                                 @else
                                 <a href="{{ route('user.groups.join', $group->group_id) }}" class="btn btn-outline-primary">
-                                    Tham gia nhóm
+                                    Join the Group
                                 </a>
                                 @endif
                                 @endif
@@ -216,10 +217,10 @@
                         </div>
                     </div>
 
-                    <!-- Sidebar các nhóm liên quan -->
+
                     <div class="col-md-4 col-sm-12">
                         <div class="card-box mb-30">
-                            <h5 class="mb-10">Sản phẩm</h5>
+                            <h5 class="mb-10">Product</h5>
                             @if($group->product)
                             <div class="related-product mb-20 position-relative">
                                 <a href="{{ url('/products/'.$group->product->product_id) }}">
@@ -237,19 +238,19 @@
                                     <a href="{{ url('/products/'.$group->product->product_id) }}">
                                         <h6>{{ $group->product->product_name }}</h6>
                                     </a>
-                                    <p class="mb-1">Giá: <strong>{{ number_format($group->product->price) }} đ</strong></p>
-                                    <p class="mb-1">Danh mục: {{ $group->product->category->category_name ?? 'Không có' }}</p>
-                                    <p class="mb-1">Người bán: <a href="{{ url('/sellers/'.$group->product->seller->id ?? '#') }}">
+                                    <p class="mb-1">Price: <strong>{{ number_format($group->product->price) }} đ</strong></p>
+                                    <p class="mb-1">List: {{ $group->product->category->category_name ?? 'Không có' }}</p>
+                                    <p class="mb-1">Seller: <a href="{{ url('/sellers/'.$group->product->seller->id ?? '#') }}">
                                             {{ $group->product->seller->full_name ?? 'Ẩn' }}
                                         </a></p>
-                                    <p class="mb-1">Số lượng tồn: {{ $group->product->current_quantity }}</p>
+                                    <p class="mb-1">Quantity: {{ $group->product->current_quantity }}</p>
                                 </div>
                             </div>
                             @endif
                         </div>
 
                         <div class="card-box mb-30">
-                            <h5 class="pd-20 h5 mb-0">Các Nhóm Liên Quan</h5>
+                            <h5 class="pd-20 h5 mb-0">Related Groups</h5>
                             <div class="latest-post">
                                 <ul>
                                     @foreach($relatedGroups as $rGroup)
@@ -267,7 +268,7 @@
                                                     {{ $rGroup->group_name }}
                                                 </a>
                                             </h6>
-                                            <small>Người tạo: {{ $rGroup->creator->full_name ?? 'Không có' }}</small>
+                                            <small>Creator : {{ $rGroup->creator->full_name ?? 'No One' }}</small>
                                         </div>
                                     </li>
                                     @endforeach

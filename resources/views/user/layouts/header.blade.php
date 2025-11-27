@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button class="btn btn-primary">Tìm kiếm</button>
+                                <button class="btn btn-primary">Search</button>
                             </div>
                         </div>
                     </div>
@@ -113,24 +113,24 @@
 
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="{{ route('user.orders.cart') }}">
-                        <i class="dw dw-shopping-cart"></i> Giỏ hàng
+                        <i class="dw dw-shopping-cart"></i> Cart
                     </a>
 
                     <a class="dropdown-item" href="{{ route('user.orders.index') }}">
-                        <i class="dw dw-calendar-1"></i> Lịch sử đơn hàng
+                        <i class="dw dw-calendar-1"></i> Order History
                     </a>
 
                     <a class="dropdown-item" href="{{ route('user.auth.changePass') }}">
-                        <i class="fa fa-key"></i> Đổi mật khẩu
+                        <i class="fa fa-key"></i> Change Password
                     </a>
 
                     <a class="dropdown-item" href="{{ route('user.auth.changeInfo') }}">
-                        <i class="fa fa-user"></i> Thông tin cá nhân
+                        <i class="fa fa-user"></i> My Profile
                     </a>
 
 
                     <a class="dropdown-item" href="{{ route('logout') }}">
-                        <i class="dw dw-logout"></i> Đăng xuất
+                        <i class="dw dw-logout"></i> Logout
                     </a>
                 </div>
 
@@ -139,7 +139,7 @@
                     <span class="user-icon">
                         <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
                     </span>
-                    <span class="user-name">Đăng nhập</span>
+                    <span class="user-name">Login</span>
                 </a>
                 @endif
             </div>

@@ -35,10 +35,10 @@
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="/">Trang chủ</a>
+                                <a href="/">Main Page</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Khám Phá Nhóm
+                                Explore Groups
                             </li>
                         </ol>
                     </nav>
@@ -77,11 +77,11 @@
                                                 </h4>
                                                 <div class="blog-by">
                                                     <p>
-                                                        Người tạo: {{ $group->creator->full_name ?? 'Không có' }} <br>
+                                                        Creator: {{ $group->creator->full_name ?? 'No One' }} <br>
                                                         {{ \Illuminate\Support\Str::limit($group->description, 150) }}
                                                     </p>
                                                     <div class="pt-10">
-                                                        <a href="{{ url('/groups/'.$group->group_id) }}" class="btn btn-outline-primary">Chi Tiết</a>
+                                                        <a href="{{ url('/groups/'.$group->group_id) }}" class="btn btn-outline-primary">More Details</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,15 +99,15 @@
                             </div>
                         </div>
                         @else
-                        <p>Hiện chưa có nhóm mua chung nào.</p>
+                        <p>There aren't any group buy</p>
                         @endif
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="card-box mb-30">
-                            <h5 class="pd-20 h5 mb-0">Danh mục</h5>
+                            <h5 class="pd-20 h5 mb-0">List</h5>
                             <div class="list-group">
                                 <a href="{{ url('/groups') }}" class="list-group-item d-flex align-items-center justify-content-between {{ request('category') == '' ? 'active' : '' }}">
-                                    Tất cả
+                                    All
                                     <span class="badge badge-primary badge-pill">{{ $groups->total() }}</span>
                                 </a>
                                 @foreach($categories as $category)

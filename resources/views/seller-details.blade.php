@@ -58,7 +58,7 @@
                                 <a href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Người bán
+                                Seller
                             </li>
                         </ol>
                     </nav>
@@ -81,17 +81,17 @@
                     <p class="text-center text-muted font-14">{{ $seller->username }}</p>
 
                     <div class="profile-info">
-                        <h5 class="mb-20 h5 text-blue">Thông tin liên hệ</h5>
+                        <h5 class="mb-20 h5 text-blue">Contact Infomation</h5>
                         <ul>
                             <li><span>Email:</span> {{ $seller->email }}</li>
                             <li><span>Phone Number:</span> {{ $seller->phone_number }}</li>
-                            <li><span>Quốc gia:</span> Việt Nam</li>
-                            <li><span>Địa chỉ:</span> {{ $seller->address ?? 'Chưa cập nhật' }}</li>
+                            <li><span>Country:</span> Việt Nam</li>
+                            <li><span>Address:</span> {{ $seller->address ?? 'Update soon' }}</li>
                         </ul>
 
                     </div>
                     <div class="profile-social">
-                        <h5 class="mb-20 h5 text-blue">Mạng xã hội</h5>
+                        <h5 class="mb-20 h5 text-blue">Social media</h5>
                         <ul class="clearfix">
                             <li>
                                 <a
@@ -126,14 +126,14 @@
                         </ul>
                     </div>
                     <div class="profile-skills">
-                        <h5 class="mb-20 h5 text-blue">Thông Số</h5>
-                        <h6 class="mb-5 font-14">Sản phẩm bán ra</h6>
+                        <h5 class="mb-20 h5 text-blue">Specifications</h5>
+                        <h6 class="mb-5 font-14">Products Sold</h6>
                         <div class="progress mb-20" style="height: 6px">
                             <div class="progress-bar" role="progressbar"
                                 style="width: {{ $seller->products->count() * 10 }}%">
                             </div>
                         </div>
-                        <h6 class="mb-5 font-14">Đơn hàng</h6>
+                        <h6 class="mb-5 font-14">Order</h6>
                         <div class="progress mb-20" style="height: 6px">
                             <div
                                 class="progress-bar"
@@ -156,7 +156,7 @@
                                         class="nav-link active"
                                         data-toggle="tab"
                                         href="#timeline"
-                                        role="tab">Sản Phẩm Của Người Bán</a>
+                                        role="tab">Seller's Product</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -180,12 +180,12 @@
                                                         <p class="text-muted mb-2">{{ number_format($product->price) }}₫</p>
 
                                                         <p class="mt-2">
-                                                            Số lượng hiện tại:
+                                                            Current Amount:
                                                             <strong>{{ $product->current_quantity }}</strong>
                                                         </p>
 
                                                         <a href="/products/{{ $product->product_id }}" class="btn btn-primary btn-sm">
-                                                            Xem chi tiết
+                                                           More Details
                                                         </a>
                                                     </div>
                                                 </div>
@@ -194,7 +194,7 @@
                                         </div>
 
                                         @if($seller->products->isEmpty())
-                                        <p class="text-muted">Người bán chưa đăng sản phẩm nào.</p>
+                                        <p class="text-muted">The seller has not listed any products yet.</p>
                                         @endif
                                     </div>
 
