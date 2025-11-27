@@ -12,7 +12,9 @@ class Order extends Model
         'buyer_id',
         'group_id',
         'order_date',
-        'subtotal_amount',
+        'product_id',
+        'unit_price',
+        'discount',
         'total_amount',
         'status',
     ];
@@ -22,14 +24,14 @@ class Order extends Model
         return $this->belongsTo(User::class, 'buyer_id');
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    public function details()
-    {
-        return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
     public function payments()

@@ -1,62 +1,5 @@
 @extends('seller.layouts.master')
-<style>
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 34px;
-        height: 20px;
-    }
-
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-        border-radius: 50px;
-    }
-
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 12px;
-        width: 12px;
-        border-radius: 50%;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-    }
-
-    input:checked+.slider {
-        background-color: #4CAF50;
-    }
-
-    input:checked+.slider:before {
-        transform: translateX(14px);
-    }
-
-    .table {
-        width: 100%;
-        table-layout: fixed;
-    }
-
-    .table th,
-    .table td {
-        word-wrap: break-word;
-        white-space: nowrap;
-    }
-</style>
-@section('page-title', 'Quản lý Sản phẩm')
+@section('page-title', 'Quản lý đơn hàng')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -65,7 +8,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Quản lý Sản phẩm</h4>
+                        <h4>Quản lý đơn hàng</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -73,7 +16,7 @@
                                 <a href="{{ route('seller.dashboard') }}">Quản trị</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý Sản phẩm
+                                Quản lý đơn hàng
                             </li>
                         </ol>
                     </nav>
@@ -82,28 +25,20 @@
             </div>
         </div>
 
-        @if(session('add'))
-        <div class="alert alert-success">Thêm thành công!</div>
-        @endif
-
-        @if(session('update'))
-        <div class="alert alert-success">Cập nhật thành công!</div>
-        @endif
-
         @if(session('updateStatus'))
         <div class="alert alert-success">Cập nhật trạng thái thành công!</div>
         @endif
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Quản lý Sản phẩm</h4>
+                <h4 class="text-blue h4">Quản lý đơn hàng</h4>
             </div>
             <div class="pb-20">
                 <table class="data-table table stripe hover">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Ảnh</th> <!-- cột mới -->
+                            <th>Ảnh</th> 
                             <th>Tên sản phẩm</th>
                             <th>Danh mục</th>
                             <th>Giá</th>

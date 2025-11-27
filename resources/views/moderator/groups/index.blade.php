@@ -73,10 +73,10 @@
                                 <form action="{{ route('moderator.groups.updateStatus', $group->group_id) }}" method="POST">
                                     @csrf
                                     <select name="status" class="form-control" onchange="this.form.submit()">
-                                        <option value="pending" {{ $group->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                        <option value="processing" {{ $group->status == 'processing' ? 'selected' : '' }}>Processing</option>
-                                        <option value="completed" {{ $group->status == 'completed' ? 'selected' : '' }}>Completed</option>
-                                        <option value="cancelled" {{ $group->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                        <option value="pending" {{ $group->status == 'pending' ? 'selected' : '' }}>Chờ xác nhận</option>
+                                        <option value="processing" {{ $group->status == 'processing' ? 'selected' : '' }}>Đang thực hiện</option>
+                                        <option value="completed" {{ $group->status == 'completed' ? 'selected' : '' }}>Hoàn thành</option>
+                                        <option value="cancelled" {{ $group->status == 'cancelled' ? 'selected' : '' }}>Đã huỷ</option>
                                     </select>
                                 </form>
                             </td>

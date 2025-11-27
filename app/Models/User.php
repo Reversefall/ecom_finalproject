@@ -25,7 +25,7 @@ class User extends Authenticatable
         'email',
         'phone_number',
         'password',
-        'role', //admin, seller, user, moderator
+        'role',
         'status',
         'last_active',
     ];
@@ -56,5 +56,22 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class, 'seller_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Product::class, 'user_id');
+    }
+
+    public function sellerOrders()
+    {
+        return $this->hasManyThrough(
+            Order::class,
+            Product::class,
+            'seller_id',   
+            'product_id',  
+            'id',         
+            'product_id'  
+        );
     }
 }

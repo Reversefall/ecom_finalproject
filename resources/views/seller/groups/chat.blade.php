@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('seller.layouts.master')
 @section('page-title', 'Trang chủ')
 
 @section('content')
@@ -132,7 +132,7 @@
         if (msg === "") return;
 
         $.ajax({
-            url: "/user/groups/chat/" + groupId,
+            url: "/seller/groups/chat/" + groupId,
             type: "POST",
             data: {
                 _token: "{{ csrf_token() }}",

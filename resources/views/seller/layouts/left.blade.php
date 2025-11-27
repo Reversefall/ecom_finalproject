@@ -27,6 +27,27 @@
                         <li><a href="{{ route('seller.products.create') }}">Thêm</a></li>
                     </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-file-text"></span>
+                        <span class="mtext">Quản lý nhóm mua</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('seller.groups.index') }}">Danh sách nhóm</a></li>
+                        <li><a href="{{ route('seller.groups.payments') }}">Theo dõi thanh toán</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-bag-check"></span>
+                        <span class="mtext">Quản lý đơn hàng</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('seller.orders.index') }}">Danh sách</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

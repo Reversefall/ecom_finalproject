@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('seller.layouts.master')
 @section('page-title', 'Trang chủ')
 
 @section('content')
@@ -81,38 +81,36 @@
                                         <div class="col-lg-8 col-md-12 col-sm-12">
                                             <div class="blog-caption">
                                                 <h4>
-                                                    <a href="{{ url('/groups/'.$group->group_id) }}">
+                                                    <a href="{{ url('/seller/groups/detail/'.$group->group_id) }}">
                                                         {{ $group->group_name }}
                                                     </a>
+
+                                                    {{-- Badge trạng thái --}}
+                                                    @php
+                                                    $badgeColors = [
+                                                    'pending' => 'warning',
+                                                    'processing' => 'info',
+                                                    'completed' => 'success',
+                                                    'cancelled' => 'danger'
+                                                    ];
+                                                    @endphp
+
+                                                    <span class="badge badge-{{ $badgeColors[$group->status] ?? 'secondary' }}">
+                                                        {{ ucfirst($group->status) }}
+                                                    </span>
                                                 </h4>
 
-                                                {{-- Badge trạng thái --}}
-                                                @php
-                                                $badgeColors = [
-                                                'pending' => 'warning',
-                                                'processing' => 'info',
-                                                'completed' => 'success',
-                                                'cancelled' => 'danger'
-                                                ];
-                                                @endphp
-
-                                                <span class="badge badge-{{ $badgeColors[$group->status] ?? 'secondary' }}">
-                                                    {{ ucfirst($group->status) }}
-                                                </span>
-
-                                                <div class="blog-by mt-2">
+                                                <div class="blog-by">
                                                     <p>
                                                         Người tạo: {{ $group->creator->full_name ?? 'Không có' }} <br>
                                                         {{ \Illuminate\Support\Str::limit($group->description, 150) }}
                                                     </p>
 
                                                     <div class="pt-10">
-                                                        <a href="{{ url('/groups/'.$group->group_id) }}"
-                                                            class="btn btn-outline-primary">Chi Tiết</a>
+                                                        <a href="{{ url('/seller/groups/detail/'.$group->group_id) }}" class="btn btn-outline-primary">Chi Tiết</a>
 
                                                         @if($group->status == 'processing')
-                                                        <a href="{{ url('/user/groups/chat/'.$group->group_id) }}"
-                                                            class="btn btn-outline-success">
+                                                        <a href="{{ url('/seller/groups/chat/'.$group->group_id) }}" class="btn btn-outline-success">
                                                             Chat
                                                         </a>
                                                         @endif
@@ -142,12 +140,12 @@
                         <div class="card-box mb-30">
                             <h5 class="pd-20 h5 mb-0">Danh mục</h5>
                             <div class="list-group">
-                                <a href="{{ url('/user/groups') }}" class="list-group-item d-flex align-items-center justify-content-between {{ request('category') == '' ? 'active' : '' }}">
+                                <a href="{{ url('/seller/groups') }}" class="list-group-item d-flex align-items-center justify-content-between {{ request('category') == '' ? 'active' : '' }}">
                                     Tất cả
                                     <span class="badge badge-primary badge-pill">{{ $groups->total() }}</span>
                                 </a>
                                 @foreach($categories as $category)
-                                <a href="{{ url('/user/groups?category='.$category->category_id) }}"
+                                <a href="{{ url('/seller/groups?category='.$category->category_id) }}"
                                     class="list-group-item d-flex align-items-center justify-content-between {{ request('category') == $category->category_id ? 'active' : '' }}">
                                     {{ $category->category_name }}
                                     <span class="badge badge-primary badge-pill">{{ $category->group_count }}</span>

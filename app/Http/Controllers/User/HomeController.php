@@ -14,6 +14,24 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            $products = Product::where('status', 1)
+                ->with('images')
+                ->get();
+
+            return view('index', compact('products'));
+        }
+
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        if ($user->role === 'seller') {
+            return redirect()->route('seller.dashboard');
+        }
+        
         $products = Product::where('status', 1)
             ->with('images')
             ->get();

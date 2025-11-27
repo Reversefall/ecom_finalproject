@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -13,7 +13,7 @@ use App\Services\GitHubUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserGroupController extends Controller
+class SellerGroupController extends Controller
 {
     public function index(Request $request)
     {
@@ -31,6 +31,7 @@ class UserGroupController extends Controller
                 $q->with('category', 'images');
             }
         ])
+            ->where('status', 'processing')
             ->whereHas('members', function ($q) use ($userId) {
                 $q->where('customer_id', $userId);
             });
@@ -45,79 +46,48 @@ class UserGroupController extends Controller
 
         $groups = $query->paginate(6)->withQueryString();
 
-        return view('mygroups', compact('categories', 'groups'));
+        return view('seller.groups.index', compact('categories', 'groups'));
+    }
+
+    public function detail($id)
+    {
+        $group = Group::with(['creator', 'product.images', 'members'])->findOrFail($id);
+        return view('seller.groups.details', compact('group'));
     }
 
 
-    public function joinGroup($groupId)
+    public function payments(Request $request)
     {
         $userId = Auth::id();
 
-        $group = Group::findOrFail($groupId);
+        $categories = Category::withCount(['products as group_count' => function ($q) {
+            $q->whereHas('groups', function ($q2) {
+                $q2->where('status', 'processing');
+            });
+        }])->get();
 
-        $exists = GroupMember::where('group_id', $groupId)
-            ->where('customer_id', $userId)
-            ->exists();
-
-        if ($exists) {
-            return back()->with('warning', 'Bạn đã tham gia nhóm này rồi.');
-        }
-
-        GroupMember::create([
-            'group_id'    => $groupId,
-            'customer_id' => $userId,
-            'joined_at'   => now(),
-        ]);
-
-        return back()->with('success', 'Tham gia nhóm thành công!');
-    }
-
-    public function create($productId)
-    {
-        $product = Product::findOrFail($productId);
-        return view('create-group', compact('product'));
-    }
-
-    public function store(Request $request, $productId)
-    {
-        $userId = Auth::id();
-
-        $product = Product::findOrFail($productId);
-
-        $sellerId = $product->seller_id;
-
-        $exists = Group::where('product_id', $productId)
-            ->where('creator_id', $userId)
+        $query = Group::with([
+            'creator',
+            'product' => function ($q) {
+                $q->with('category', 'images');
+            }
+        ])
             ->where('status', 'processing')
-            ->exists();
+            ->whereHas('members', function ($q) use ($userId) {
+                $q->where('customer_id', $userId);
+            });
 
-        if ($exists) {
-            return back()->with('warning', 'Bạn đã tạo nhóm mua chung cho sản phẩm này rồi!');
+        if ($request->has('category') && $request->category != '') {
+            $categoryId = $request->category;
+
+            $query->whereHas('product', function ($q) use ($categoryId) {
+                $q->where('category_id', $categoryId);
+            });
         }
 
-        $group = Group::create([
-            'creator_id'  => $userId,
-            'product_id'  => $productId,
-            'group_name'  => $product->product_name . ' - Nhóm Mua Chung',
-            'description' => $request->description ?? '',
-            'status'      => 'processing',
-        ]);
+        $groups = $query->paginate(6)->withQueryString();
 
-        GroupMember::create([
-            'group_id'    => $group->group_id,
-            'customer_id' => $userId,
-            'joined_at'   => now(),
-        ]);
-
-        if ($sellerId && $sellerId != $userId) {
-            GroupMember::create([
-                'group_id'    => $group->group_id,
-                'customer_id' => $sellerId,
-                'joined_at'   => now(),
-            ]);
-        }
-
-        return redirect()->route('user.groups.index')->with('success', 'Tạo nhóm mua chung thành công!');
+        return view('seller.groups.payments', compact('categories', 'groups'));
     }
 
 
@@ -139,7 +109,7 @@ class UserGroupController extends Controller
             ->orderBy('sent_at', 'asc')
             ->get();
 
-        return view('chat', compact('group', 'members', 'messages'));
+        return view('seller.groups.chat', compact('group', 'members', 'messages'));
     }
 
     public function send(Request $request, $groupId)

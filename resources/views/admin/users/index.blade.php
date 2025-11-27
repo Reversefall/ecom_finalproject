@@ -99,7 +99,7 @@
                 <h4 class="text-blue h4">Quản lý Tài Khoản</h4>
             </div>
             <div class="pb-20">
-                <table class="data-table table stripe hover nowrap">
+                <table class="data-table table stripe hover">
                     <thead>
                         <tr>
                             <th>ID</th>

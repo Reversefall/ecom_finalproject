@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Moderator\ModeratorDashboardController;
 use App\Http\Controllers\Moderator\ModeratorGroupController;
 use App\Http\Controllers\Seller\SellerDashboardController;
+use App\Http\Controllers\Seller\SellerGroupController;
+use App\Http\Controllers\Seller\SellerOrderController;
 use App\Http\Controllers\Seller\SellerProductController;
 use App\Http\Controllers\User\UserGroupController;
 
@@ -55,6 +57,16 @@ Route::prefix('seller')->middleware(['auth', 'is_seller'])->group(function () {
     Route::get('/products/toggle-status/{id}', [SellerProductController::class, 'toggleStatus'])->name('seller.products.toggle-status');
     Route::delete('/products/images/{image}', [SellerProductController::class, 'destroyImage'])
         ->name('seller.products.images.destroy');
+
+    Route::get('/groups', [SellerGroupController::class, 'index'])->name('seller.groups.index');
+    Route::get('/groups/detail/{id}', [SellerGroupController::class, 'detail'])->name('seller.groups.detail');
+    Route::get('/groups/payments/:id', [SellerGroupController::class, 'payments'])->name('seller.groups.payments');
+    Route::get('/groups/chat/{id}', [SellerGroupController::class, 'chat'])->name('seller.groups.chat');
+    Route::post('/groups/chat/{id}', [SellerGroupController::class, 'send'])->name('seller.groups.send');
+
+
+     Route::get('/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
+    Route::get('/orders/detail/{id}', [SellerOrderController::class, 'detail'])->name('seller.orders.detail');
 });
 
 // Khu vực MODERATOR
@@ -63,7 +75,7 @@ Route::prefix('moderator')->middleware(['auth', 'is_moderator'])->group(function
     Route::get('/dashboard', [ModeratorDashboardController::class, 'index'])->name('moderator.dashboard');
     Route::get('/groups', [ModeratorGroupController::class, 'index'])->name('moderator.groups.index');
     Route::get('/groups/detail/{id}', [ModeratorGroupController::class, 'detail'])->name('moderator.groups.detail');
-    Route::get('/groups/toggle-status/{id}', [ModeratorGroupController::class, 'updateStatus'])->name('moderator.groups.updateStatus');
+    Route::post('/groups/toggle-status/{id}', [ModeratorGroupController::class, 'updateStatus'])->name('moderator.groups.updateStatus');
 });
 
 // Khu vực USER
