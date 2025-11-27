@@ -13,11 +13,10 @@ class ModeratorGroupController extends Controller
         return view('moderator.groups.index', compact('groups'));
     }
 
-
     public function detail($id)
     {
-        $user = Group::findOrFail($id);
-        return view('moderator.groups.edit', compact('user'));
+        $group = Group::with('members')->findOrFail($id);
+        return view('moderator.groups.details', compact('group'));
     }
 
     public function updateStatus(Request $request, $id)

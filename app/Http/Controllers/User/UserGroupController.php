@@ -53,7 +53,11 @@ class UserGroupController extends Controller
     {
         $userId = Auth::id();
 
-        $group = Group::findOrFail($groupId);
+        $group = Group::withCount('members')->findOrFail($groupId);
+
+        if ($group->members_count - 1 >= $group->max_quantity) {
+            return back()->with('warning', 'Nhóm đã đủ số lượng, không thể tham gia thêm.');
+        }
 
         $exists = GroupMember::where('group_id', $groupId)
             ->where('customer_id', $userId)
@@ -71,6 +75,7 @@ class UserGroupController extends Controller
 
         return back()->with('success', 'Tham gia nhóm thành công!');
     }
+
 
     public function create($productId)
     {
@@ -98,6 +103,7 @@ class UserGroupController extends Controller
         $group = Group::create([
             'creator_id'  => $userId,
             'product_id'  => $productId,
+            'max_quantity'  => $request->max_quantity,
             'group_name'  => $product->product_name . ' - Nhóm Mua Chung',
             'description' => $request->description ?? '',
             'status'      => 'processing',

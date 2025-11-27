@@ -65,13 +65,8 @@ class User extends Authenticatable
 
     public function sellerOrders()
     {
-        return $this->hasManyThrough(
-            Order::class,
-            Product::class,
-            'seller_id',   
-            'product_id',  
-            'id',         
-            'product_id'  
-        );
+        return Order::join('order_details', 'orders.order_id', '=', 'order_details.order_id')
+            ->join('products', 'order_details.product_id', '=', 'products.product_id')
+            ->where('products.seller_id', $this->id);
     }
 }

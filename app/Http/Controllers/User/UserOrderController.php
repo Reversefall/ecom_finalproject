@@ -61,7 +61,6 @@ class UserOrderController extends Controller
             $request->amount_paid,
             "Thanh toán đơn hàng #" . $order->order_id
         );
-        Log::info('VNPay Payment URL: ' . $paymentUrl);
         return redirect($paymentUrl);
     }
 

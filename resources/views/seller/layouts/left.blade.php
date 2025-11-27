@@ -35,14 +35,13 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('seller.groups.index') }}">Danh sách nhóm</a></li>
-                        <li><a href="{{ route('seller.groups.payments') }}">Theo dõi thanh toán</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-bag-check"></span>
-                        <span class="mtext">Quản lý đơn hàng</span>
+                        <span class="mtext">Sản phẩm đã bán</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('seller.orders.index') }}">Danh sách</a></li>

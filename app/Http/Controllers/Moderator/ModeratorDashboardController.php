@@ -12,7 +12,24 @@ class ModeratorDashboardController extends Controller
 {
     public function index()
     {
-        $groups = Group::all();
-        return view('moderator.dashboard', compact('groups'));
+
+        $totalGroups = Group::count();
+
+        $year = now()->year;
+        $groupsPerMonth = Group::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereYear('created_at', $year)
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+        $groupsData = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $groupsData[$i] = $groupsPerMonth[$i] ?? 0;
+        }
+
+        return view('moderator.dashboard', compact(
+            'totalGroups',
+            'groupsData',
+            'year'
+        ));
     }
 }

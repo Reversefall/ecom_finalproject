@@ -24,7 +24,9 @@ class SellerDashboardController extends Controller
         $totalGroups = Group::whereIn('product_id', $seller->products()->pluck('product_id'))
             ->count();
 
-        $totalRevenue = $seller->sellerOrders()->sum('total_amount');
+        $totalRevenue = $seller->sellerOrders()
+            ->sum('orders.total_amount');
+
 
         $year = now()->year;
 
@@ -39,12 +41,27 @@ class SellerDashboardController extends Controller
             $monthlyData[$i] = $productsPerMonth[$i] ?? 0;
         }
 
+        $revenuePerMonth = $seller->sellerOrders()
+            ->selectRaw('MONTH(orders.created_at) as month, SUM(orders.total_amount) as total')
+            ->whereYear('orders.created_at', $year)
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+
+
+        $revenueData = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $revenueData[$i] = $revenuePerMonth[$i] ?? 0;
+        }
+
+
         return view('seller.dashboard', compact(
             'totalOrders',
             'totalProducts',
             'totalGroups',
             'totalRevenue',
             'monthlyData',
+            'revenueData',
             'year'
         ));
     }

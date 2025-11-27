@@ -8,31 +8,13 @@
     </div>
 
     <div class="row pb-10">
+
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">75</div>
-                        <div class="font-14 text-secondary weight-500">
-                            Đơn hàng
-                        </div>
-                    </div>
-                    <div class="widget-icon">
-                        <div class="icon" data-color="#00eccf">
-                            <i class="icon-copy dw dw-calendar1"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-            <div class="card-box height-100-p widget-style3">
-                <div class="d-flex flex-wrap">
-                    <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">124,551</div>
-                        <div class="font-14 text-secondary weight-500">
-                            Sản phẩm
-                        </div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalOrders }}</div>
+                        <div class="font-14 text-secondary weight-500">Đơn hàng</div>
                     </div>
                     <div class="widget-icon">
                         <div class="icon" data-color="#ff5b5b">
@@ -42,33 +24,51 @@
                 </div>
             </div>
         </div>
+
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">400+</div>
-                        <div class="font-14 text-secondary weight-500">
-                            Tài khoản
-                        </div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalProducts }}</div>
+                        <div class="font-14 text-secondary weight-500">Sản phẩm</div>
                     </div>
                     <div class="widget-icon">
-                        <div class="icon">
-                            <i class="icon-copy fa fa-stethoscope" aria-hidden="true"></i>
+                        <div class="icon" data-color="#ff5b5b">
+                            <span class="icon-copy ti-heart"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">$50,000</div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalGroups }}</div>
+                        <div class="font-14 text-secondary weight-500">Nhóm mua</div>
+                    </div>
+                    <div class="widget-icon">
+                        <div class="icon">
+                            <i class="icon-copy fa fa-stethoscope"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+            <div class="card-box height-100-p widget-style3">
+                <div class="d-flex flex-wrap">
+                    <div class="widget-data">
+                        <div class="weight-700 font-24 text-dark">
+                            {{ number_format($totalRevenue, 0, ',', '.') }}₫
+                        </div>
                         <div class="font-14 text-secondary weight-500">Doanh thu</div>
                     </div>
                     <div class="widget-icon">
                         <div class="icon" data-color="#09cc06">
-                            <i class="icon-copy fa fa-money" aria-hidden="true"></i>
+                            <i class="icon-copy fa fa-money"></i>
                         </div>
                     </div>
                 </div>
@@ -76,65 +76,121 @@
         </div>
     </div>
 
-    <div class="row pb-10">
-        <div class="col-md-8 mb-20">
-            <div class="card-box height-100-p pd-20">
-                <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
-                    <div class="h5 mb-md-0">Hoạt động</div>
-                    <div class="form-group mb-md-0">
-                        <select class="form-control form-control-sm selectpicker">
-                            <option value="">1 tuần</option>
-                            <option value="">1 tháng</option>
-                            <option value="">6 tháng</option>
-                            <option value="">1 năm</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="activities-chart"></div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-20">
-            <div class="card-box min-height-200px pd-20 mb-20" data-bgcolor="#455a64">
-                <div class="d-flex justify-content-between pb-20 text-white">
-                    <div class="icon h1 text-white">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                    </div>
-                    <div class="font-14 text-right">
-                        <div><i class="icon-copy ion-arrow-up-c"></i> 2.69%</div>
-                        <div class="font-12">So với tháng trước</div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-end">
-                    <div class="text-white">
-                        <div class="font-14">Đơn hàng</div>
-                        <div class="font-24 weight-500">1865</div>
-                    </div>
-                    <div class="max-width-150">
-                        <div id="appointment-chart"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-box min-height-200px pd-20" data-bgcolor="#265ed7">
-                <div class="d-flex justify-content-between pb-20 text-white">
-                    <div class="icon h1 text-white">
-                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
-                    </div>
-                    <div class="font-14 text-right">
-                        <div><i class="icon-copy ion-arrow-down-c"></i> 3.69%</div>
-                        <div class="font-12">So với tháng trước</div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-end">
-                    <div class="text-white">
-                        <div class="font-14">Tài khoản mới</div>
-                        <div class="font-24 weight-500">250</div>
-                    </div>
-                    <div class="max-width-150">
-                        <div id="surgery-chart"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="card-box mb-30 p-20 shadow-sm rounded-lg" style="background: #ffffff;">
+        <h4 class="h4 text-blue mb-20" style="font-weight: 600;">
+            Biểu đồ doanh thu theo tháng ({{ $year }})
+        </h4>
+
+        <div style="padding: 10px 10px 20px 10px;">
+            <canvas id="revenueChart" height="120"></canvas>
         </div>
     </div>
+
+
+    <div class="card-box mb-30 p-20 shadow-sm rounded-lg" style="background: #ffffff;">
+        <h4 class="h4 text-blue mb-20" style="font-weight: 600;">
+            Biểu đồ số sản phẩm đăng theo tháng ({{ $year }})
+        </h4>
+
+        <div style="padding: 10px 10px 20px 10px;">
+            <canvas id="productsChart" height="120"></canvas>
+        </div>
+    </div>
+
 </div>
+@endsection
+
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+
+    new Chart(ctxRevenue, {
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            datasets: [{
+                label: 'Doanh thu (VNĐ)',
+                data: @json(array_values($revenueData)),
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+            }]
+        },
+        options: {
+            layout: {
+                padding: 20
+            },
+            plugins: {
+                legend: {
+                    display: true
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        padding: 10
+                    }
+                },
+                x: {
+                    ticks: {
+                        padding: 10
+                    }
+                }
+            }
+        }
+    });
+
+
+    const ctx = document.getElementById('productsChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            datasets: [{
+                label: 'Sản phẩm đã đăng',
+                data: @json(array_values($monthlyData)),
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+            }]
+        },
+        options: {
+            layout: {
+                padding: 20
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        padding: 20
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        padding: 10
+                    }
+                },
+                x: {
+                    ticks: {
+                        padding: 10
+                    }
+                }
+            }
+        }
+    });
+</script>
 @endsection

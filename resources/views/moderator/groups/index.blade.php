@@ -86,7 +86,7 @@
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('moderator.groups.detail', $group->product_id) }}">
+                                        <a class="dropdown-item" href="{{ route('moderator.groups.detail', $group->group_id) }}">
                                             <i class="dw dw-edit2"></i> Chi tiết
                                         </a>
                                     </div>

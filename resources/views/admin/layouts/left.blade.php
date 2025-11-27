@@ -11,12 +11,6 @@
     <div class="menu-block customscroll">
         <div class="sidebar-menu">
             <ul id="accordion-menu">
-                <li>
-                    <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow">
-                        <span class="micon fa fa-home"></span><span class="mtext">Trang chủ</span>
-                    </a>
-                </li>
-
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-person-fill"></span>
@@ -28,7 +22,15 @@
                     </ul>
                 </li>
 
-
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-receipt"></span>
+                        <span class="mtext">Đơn hàng</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('admin.orders.index') }}">Danh sách</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

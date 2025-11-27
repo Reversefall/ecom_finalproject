@@ -13,12 +13,6 @@ class VNPayService
         $vnp_PayUrl   = config('vnpay.vnp_PayUrl');
         $vnp_ReturnUrl = config('vnpay.vnp_ReturnUrl');
 
-        Log::info('VNPay Payment URL: ' . $vnp_TmnCode);
-        Log::info('VNPay Payment URL: ' . $vnp_HashSecret);
-        Log::info('VNPay Payment URL: ' . $vnp_PayUrl);
-        Log::info('VNPay Payment URL: ' . $vnp_ReturnUrl);
-
-
         $vnp_TxnRef = time() . rand(1000, 9999); 
         $vnp_Amount = $amount * 100; 
         $vnp_OrderInfo = $orderInfo ?? "Thanh toán đơn hàng #$orderId";

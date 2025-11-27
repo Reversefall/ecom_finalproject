@@ -3,44 +3,28 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Group;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SellerOrderController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $userId = Auth::id();
+        $sellerId = Auth::id();
 
-        $categories = Category::withCount(['products as group_count' => function ($q) {
-            $q->whereHas('groups', function ($q2) {
-                $q2->where('status', 'processing');
-            });
-        }])->get();
-
-        $query = Group::with([
-            'creator',
+        $soldItems = OrderDetail::with([
+            'order',
             'product' => function ($q) {
-                $q->with('category', 'images');
+                $q->with('images', 'category');
             }
         ])
-            ->where('status', 'processing')
-            ->whereHas('members', function ($q) use ($userId) {
-                $q->where('customer_id', $userId);
-            });
+            ->whereHas('product', function ($q) use ($sellerId) {
+                $q->where('seller_id', $sellerId);
+            })
+            ->orderBy('order_id', 'DESC')
+            ->get();
 
-        if ($request->has('category') && $request->category != '') {
-            $categoryId = $request->category;
-
-            $query->whereHas('product', function ($q) use ($categoryId) {
-                $q->where('category_id', $categoryId);
-            });
-        }
-
-        $groups = $query->paginate(6)->withQueryString();
-
-        return view('seller.orders.index', compact('categories', 'groups'));
+        return view('seller.orders.index', compact('soldItems'));
     }
 }

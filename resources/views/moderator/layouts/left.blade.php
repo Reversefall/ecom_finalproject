@@ -20,7 +20,7 @@
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-box"></span>
-                        <span class="mtext">Kiểm duyệt tin đăng</span>
+                        <span class="mtext">Kiểm duyệt nhóm</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('moderator.groups.index') }}">Danh sách</a></li>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,10 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.users.edit');
     Route::post('/users/update/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
     Route::get('/users/toggle-status/{id}', [AdminUserController::class, 'toggleStatus'])->name('admin.users.toggle-status');
+
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('/orders/detail/{id}', [AdminOrderController::class, 'detail'])->name('admin.orders.detail');
+    Route::post('/orders/toggle-status', [AdminOrderController::class, 'toggleStatus'])->name('admin.orders.update-status');
 });
 
 // Khu vực SELLER

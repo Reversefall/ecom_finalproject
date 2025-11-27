@@ -14,7 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('customer_id');
 
-            $table->date('joined_at')->nullable();
+            $table->timestamp('joined_at')->nullable();
 
             // FK → groups.group_id
             $table->foreign('group_id')
