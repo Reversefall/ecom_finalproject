@@ -13,6 +13,7 @@ use App\Http\Controllers\Seller\SellerDashboardController;
 use App\Http\Controllers\Seller\SellerGroupController;
 use App\Http\Controllers\Seller\SellerOrderController;
 use App\Http\Controllers\Seller\SellerProductController;
+use App\Http\Controllers\User\UserAuthController;
 use App\Http\Controllers\User\UserCartController;
 use App\Http\Controllers\User\UserGroupController;
 use App\Http\Controllers\User\UserOrderController;
@@ -88,6 +89,12 @@ Route::prefix('moderator')->middleware(['auth', 'is_moderator'])->group(function
 
 // Khu vực USER
 Route::prefix('user')->middleware(['auth', 'is_user'])->group(function () {
+    Route::get('/auth/change-pass', [UserAuthController::class, 'showChangePassForm'])->name('user.auth.changePass');
+    Route::post('/auth/change-pass', [UserAuthController::class, 'updatePassword'])->name('user.auth.updatePass');
+
+    Route::get('/auth/change-info', [UserAuthController::class, 'showChangeInfoForm'])->name('user.auth.changeInfo');
+    Route::post('/auth/change-info', [UserAuthController::class, 'updateInfo'])->name('user.auth.updateInfo');
+
     Route::get('/groups', [UserGroupController::class, 'index'])->name('user.groups.index');
     Route::get('/groups/create/{id}', [UserGroupController::class, 'create'])->name('user.groups.create');
     Route::post('/groups/store/{product}', [UserGroupController::class, 'store'])->name('user.groups.store');

@@ -17,11 +17,11 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'full_name' => 'required',
-            'username' => 'required|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'phone_number' => 'required',
-            'password' => 'required|min:6'
+            'full_name' => 'required|string|max:255',
+            'username' => 'required|string|max:50|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'phone_number' => 'required|string|max:20|unique:users,phone_number',
+            'password' => 'required|string|min:6',
         ]);
 
         $user = User::create([
