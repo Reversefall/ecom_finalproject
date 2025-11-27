@@ -112,6 +112,14 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="{{ route('user.orders.cart') }}">
+                        <i class="dw dw-shopping-cart"></i> Giỏ hàng
+                    </a>
+
+                    <a class="dropdown-item" href="{{ route('user.orders.index') }}">
+                        <i class="dw dw-calendar-1"></i> Lịch sử đơn hàng
+                    </a>
+
                     <a class="dropdown-item" href="{{ route('logout') }}">
                         <i class="dw dw-logout"></i> Đăng xuất
                     </a>

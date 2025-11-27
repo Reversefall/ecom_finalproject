@@ -12,7 +12,9 @@ use App\Http\Controllers\Seller\SellerDashboardController;
 use App\Http\Controllers\Seller\SellerGroupController;
 use App\Http\Controllers\Seller\SellerOrderController;
 use App\Http\Controllers\Seller\SellerProductController;
+use App\Http\Controllers\User\UserCartController;
 use App\Http\Controllers\User\UserGroupController;
+use App\Http\Controllers\User\UserOrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
@@ -30,6 +32,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/vnpay/return', [UserOrderController::class, 'vnpayReturn'])->name('vnpayReturn');
 
 // Khu vực ADMIN
 // 
@@ -65,7 +68,7 @@ Route::prefix('seller')->middleware(['auth', 'is_seller'])->group(function () {
     Route::post('/groups/chat/{id}', [SellerGroupController::class, 'send'])->name('seller.groups.send');
 
 
-     Route::get('/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
+    Route::get('/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
     Route::get('/orders/detail/{id}', [SellerOrderController::class, 'detail'])->name('seller.orders.detail');
 });
 
@@ -86,4 +89,17 @@ Route::prefix('user')->middleware(['auth', 'is_user'])->group(function () {
     Route::get('/groups/join/{id}', [UserGroupController::class, 'joinGroup'])->name('user.groups.join');
     Route::get('/groups/chat/{id}', [UserGroupController::class, 'chat'])->name('user.groups.chat');
     Route::post('/groups/chat/{id}', [UserGroupController::class, 'send'])->name('user.groups.send');
+    Route::post(
+        '/groups/leave/{groupId}',
+        [UserGroupController::class, 'leaveGroup']
+    )
+        ->name('user.groups.leave');
+
+    Route::get('/cart', [UserCartController::class, 'index'])->name('user.orders.cart');
+    Route::post('/cart/update-quantity/{group}', [UserCartController::class, 'updateQuantity'])->name('user.cart.updateQuantity');
+    Route::post('/cart/checkout', [UserCartController::class, 'checkout'])->name('user.cart.checkout');
+
+    Route::get('/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
+    Route::get('/orders/detail/{id}', [UserOrderController::class, 'detail'])->name('user.orders.detail');
+    Route::post('/orders/payments', [UserOrderController::class, 'storePayment'])->name('user.orders.payments.store');
 });

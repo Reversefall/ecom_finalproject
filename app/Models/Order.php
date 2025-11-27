@@ -10,12 +10,13 @@ class Order extends Model
 
     protected $fillable = [
         'buyer_id',
-        'group_id',
         'order_date',
-        'product_id',
-        'unit_price',
-        'discount',
+        'address',
+        'phone',
+        'full_name',
+        'email',
         'total_amount',
+        'pay_amount',
         'status',
     ];
 
@@ -24,14 +25,9 @@ class Order extends Model
         return $this->belongsTo(User::class, 'buyer_id');
     }
 
-    public function product()
+    public function details()
     {
-        return $this->belongsTo(Product::class, 'product_id');
-    }
-
-    public function group()
-    {
-        return $this->belongsTo(Group::class, 'group_id');
+        return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
     public function payments()

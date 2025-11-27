@@ -161,4 +161,25 @@ class UserGroupController extends Controller
             'html' => view('components.chat_message', ['msg' => $msg])->render()
         ]);
     }
+
+    public function leaveGroup($groupId)
+    {
+        $userId = Auth::id();
+
+        $group = Group::findOrFail($groupId);
+
+
+        $member = GroupMember::where('group_id', $groupId)
+            ->where('customer_id', $userId)
+            ->first();
+
+        if (!$member) {
+            return back()->with('error', 'Bạn không phải là thành viên của nhóm này.');
+        }
+
+        $member->delete();
+
+        return redirect()->route('user.groups.index')
+            ->with('success', 'Bạn đã rời khỏi nhóm!');
+    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('group_name');
             $table->date('deadline')->nullable();
             $table->string('status')->default('pending');
-            $table->int('max_quantity'); 
+            $table->integer('max_quantity'); 
 
             $table->foreign('creator_id')
                 ->references('id') 

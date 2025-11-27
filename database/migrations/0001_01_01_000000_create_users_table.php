@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('password');             // Mật khẩu
             $table->string('role');             // Mật khẩu
             $table->boolean('status');             // Trạng thái
-
+            $table->timestamp('last_active')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
-            $table->timestamps(); 
+            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

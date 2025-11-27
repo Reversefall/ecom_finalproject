@@ -121,6 +121,15 @@
             </div>
         </div>
 
+        @php
+        $memberCount = $group->members->count() - 1;
+        $baseDiscount = 10;
+        $additionalDiscount = floor($memberCount / 5) * 2; 
+        $discount = $baseDiscount + $additionalDiscount;
+        if ($discount > 50) $discount = 50; 
+        @endphp
+
+
         <div class="blog-wrap">
             <div class="container pd-0">
                 <div class="row">
@@ -134,6 +143,8 @@
                             <div class="blog-caption">
                                 <h4 class="mb-10">{{ $group->group_name }}</h4>
                                 <p><strong>Người tạo:</strong> {{ $group->creator->full_name ?? 'Không có' }}</p>
+                                <p><strong>Giảm giá hiện tại:</strong> {{ $discount }}%</p>
+
                                 <p><strong>Trạng thái:</strong> {{ ucfirst($group->status) }}</p>
                                 <p>{{ $group->description }}</p>
 
@@ -188,6 +199,13 @@
                                 <a href="{{ url('/user/groups/chat/'.$group->group_id) }}" class="btn btn-success">
                                     Vào đoạn chat nhóm
                                 </a>
+                                <form action="{{ url('/user/groups/leave/'.$group->group_id) }}"
+                                    method="POST"
+                                    style="display:inline-block;"
+                                    onsubmit="return confirm('Bạn chắc chắn muốn rời nhóm này?')">
+                                    @csrf
+                                    <button class="btn btn-danger">Rời khỏi nhóm</button>
+                                </form>
                                 @else
                                 <a href="{{ route('user.groups.join', $group->group_id) }}" class="btn btn-outline-primary">
                                     Tham gia nhóm
