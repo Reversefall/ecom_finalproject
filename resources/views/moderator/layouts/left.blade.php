@@ -13,17 +13,17 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="{{ route('moderator.dashboard') }}" class="dropdown-toggle no-arrow">
-                        <span class="micon fa fa-home"></span><span class="mtext">Trang chủ</span>
+                        <span class="micon fa fa-home"></span><span class="mtext">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-box"></span>
-                        <span class="mtext">Kiểm duyệt nhóm</span>
+                        <span class="mtext">Group Approval</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('moderator.groups.index') }}">Danh sách</a></li>
+                        <li><a href="{{ route('moderator.groups.index') }}">List</a></li>
                     </ul>
                 </li>
             </ul>

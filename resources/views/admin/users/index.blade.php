@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('page-title', 'Quản lý Tài Khoản')
+@section('page-title', 'Account Management')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -9,15 +9,15 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Quản lý Tài Khoản</h4>
+                        <h4>Account Management</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('admin.dashboard') }}">Quản trị</a>
+                                <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý Tài Khoản
+                                Account Management
                             </li>
                         </ol>
                     </nav>
@@ -27,33 +27,33 @@
         </div>
 
         @if(session('add'))
-        <div class="alert alert-success">Thêm thành công!</div>
+        <div class="alert alert-success">Added successfully!</div>
         @endif
 
         @if(session('update'))
-        <div class="alert alert-success">Cập nhật thành công!</div>
+        <div class="alert alert-success">Updated successfully!</div>
         @endif
 
         @if(session('updateStatus'))
-        <div class="alert alert-success">Cập nhật trạng thái thành công!</div>
+        <div class="alert alert-success">Status updated successfully!</div>
         @endif
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Quản lý Tài Khoản</h4>
+                <h4 class="text-blue h4">Account Management</h4>
             </div>
             <div class="pb-20">
                 <table class="data-table table stripe hover">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tên đăng nhập</th>
-                            <th>Quyền</th>
-                            <th>Họ tên</th>
-                            <th>Số điện thoại</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Full Name</th>
+                            <th>Phone Number</th>
                             <th>Email</th>
-                            <th>Trạng thái</th>
-                            <th>Hành động</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -84,7 +84,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('admin.users.edit', $emp->id) }}">
-                                            <i class="dw dw-edit2"></i> Cập nhật
+                                            <i class="dw dw-edit2"></i> Update
                                         </a>
                                     </div>
                                 </div>
@@ -101,6 +101,7 @@
 </div>
 
 @endsection
+
 @section('scripts')
 <script>
     $(document).ready(function() {

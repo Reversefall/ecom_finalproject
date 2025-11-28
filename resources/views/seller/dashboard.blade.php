@@ -4,7 +4,7 @@
 @section('content')
 <div class="xs-pd-20-10 pd-ltr-20">
     <div class="title pb-20">
-        <h2 class="h3 mb-0">Tổng quan</h2>
+        <h2 class="h3 mb-0">Overview</h2>
     </div>
 
     <div class="row pb-10">
@@ -13,7 +13,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-700 font-24 text-dark">{{ $totalProducts }}</div>
-                        <div class="font-14 text-secondary weight-500">Sản phẩm</div>
+                        <div class="font-14 text-secondary weight-500">Product</div>
                     </div>
                     <div class="widget-icon">
                         <div class="icon" data-color="#ff5b5b">
@@ -29,7 +29,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-700 font-24 text-dark">{{ $totalGroups }}</div>
-                        <div class="font-14 text-secondary weight-500">Nhóm mua</div>
+                        <div class="font-14 text-secondary weight-500">Group Buy</div>
                     </div>
                     <div class="widget-icon">
                         <div class="icon">
@@ -47,7 +47,7 @@
                         <div class="weight-700 font-24 text-dark">
                             {{ number_format($totalRevenue, 0, ',', '.') }}₫
                         </div>
-                        <div class="font-14 text-secondary weight-500">Doanh thu</div>
+                        <div class="font-14 text-secondary weight-500">Re</div>
                     </div>
                     <div class="widget-icon">
                         <div class="icon" data-color="#09cc06">
@@ -61,7 +61,7 @@
 
     <div class="card-box mb-30 p-20 shadow-sm rounded-lg" style="background: #ffffff;">
         <h4 class="h4 text-blue mb-20" style="font-weight: 600;">
-            Biểu đồ doanh thu theo tháng ({{ $year }})
+            Monthly Revenue Chart({{ $year }})
         </h4>
 
         <div style="padding: 10px 10px 20px 10px;">
@@ -72,7 +72,7 @@
 
     <div class="card-box mb-30 p-20 shadow-sm rounded-lg" style="background: #ffffff;">
         <h4 class="h4 text-blue mb-20" style="font-weight: 600;">
-            Biểu đồ số sản phẩm đăng theo tháng ({{ $year }})
+            Monthly Product Listing Chart ({{ $year }})
         </h4>
 
         <div style="padding: 10px 10px 20px 10px;">

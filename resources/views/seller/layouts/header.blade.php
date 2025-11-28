@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <button class="btn btn-primary">Tìm kiếm</button>
+                            <button class="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         <li>
                             <a href="#">
                                 <img th:src="@{/assets_admin/vendors/images/img.jpg}" alt="" />
-                                <h3>John Doe</h3>
+                                <h3>Duong</h3>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing
                                     elit, sed...
@@ -85,7 +85,7 @@
                         <li>
                             <a href="#">
                                 <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
-                                <h3>Lea R. Frith</h3>
+                                <h3>Huyen</h3>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing
                                     elit, sed...
@@ -104,10 +104,10 @@
                 <span class="user-icon">
                     <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
                 </span>
-                <span class="user-name">Người bán</span>
+                <span class="user-name">Seller</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                <a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i>Đăng xuất</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i>Logout</a>
             </div>
         </div>
     </div>

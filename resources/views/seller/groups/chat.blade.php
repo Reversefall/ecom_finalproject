@@ -1,5 +1,5 @@
 @extends('seller.layouts.master')
-@section('page-title', 'Trang chủ')
+@section('page-title', 'Home')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -29,17 +29,16 @@
                     <div class="chat-list bg-light-gray">
                         <div class="chat-search">
                             <span class="ti-search"></span>
-                            <input type="text" placeholder="Tìm kiếm" />
+                            <input type="text" placeholder="Search" />
                         </div>
-                        <div
-                            class="notification-list chat-notification-list customscroll">
+                        <div class="notification-list chat-notification-list customscroll">
                             <ul>
                                 @foreach($members as $m)
                                 <li>
                                     <a href="#">
                                         <img src="{{ asset('assets_admin/vendors/images/img.jpg') }}" alt="" />
 
-                                        <h3 class="clearfix">{{ $m->customer->full_name ?? 'Không tên' }}</h3>
+                                        <h3 class="clearfix">{{ $m->customer->full_name ?? 'No name' }}</h3>
 
                                         <p>
                                             @if($m->isOnline)
@@ -66,7 +65,7 @@
                                         </div>
                                         <div class="chat-profile-name">
                                             <h3>{{ $group->group_name }}</h3>
-                                            <span>{{ $group->members->count() }} người tham gia</span>
+                                            <span>{{ $group->members->count() }} participants</span>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +87,7 @@
 
                                         <div class="chat-body clearfix">
                                             <strong style="font-size:13px; color:#555;">
-                                                {{ $msg->customer->full_name ?? 'Không tên' }}
+                                                {{ $msg->customer->full_name ?? 'No name' }}
                                             </strong>
                                             <p>{{ $msg->message_text }}</p>
                                             <div class="chat_time">
@@ -105,7 +104,7 @@
                                     <a href="#"><i class="fa fa-paperclip"></i></a>
                                 </div>
                                 <div class="chat_text_area">
-                                    <textarea id="chat-message" placeholder="Nhập tin nhắn…"></textarea>
+                                    <textarea id="chat-message" placeholder="Enter message…"></textarea>
                                 </div>
 
                                 <div class="chat_send">
@@ -148,5 +147,4 @@
         });
     });
 </script>
-
 @endsection

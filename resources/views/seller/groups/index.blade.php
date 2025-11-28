@@ -1,5 +1,5 @@
 @extends('seller.layouts.master')
-@section('page-title', 'Trang chủ')
+@section('page-title', 'Dashboard')
 
 @section('content')
 
@@ -36,15 +36,15 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="title">
-                        <h4>Nhóm của tôi</h4>
+                        <h4>My Groups</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="/">Trang chủ</a>
+                                <a href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Nhóm của tôi
+                                My Groups
                             </li>
                         </ol>
                     </nav>
@@ -85,7 +85,7 @@
                                                         {{ $group->group_name }}
                                                     </a>
 
-                                                    {{-- Badge trạng thái --}}
+                                                    {{-- Status badge --}}
                                                     @php
                                                     $badgeColors = [
                                                     'pending' => 'warning',
@@ -102,12 +102,12 @@
 
                                                 <div class="blog-by">
                                                     <p>
-                                                        Người tạo: {{ $group->creator->full_name ?? 'Không có' }} <br>
+                                                        Created by: {{ $group->creator->full_name ?? 'N/A' }} <br>
                                                         {{ \Illuminate\Support\Str::limit($group->description, 150) }}
                                                     </p>
 
                                                     <div class="pt-10">
-                                                        <a href="{{ url('/seller/groups/detail/'.$group->group_id) }}" class="btn btn-outline-primary">Chi Tiết</a>
+                                                        <a href="{{ url('/seller/groups/detail/'.$group->group_id) }}" class="btn btn-outline-primary">Details</a>
 
                                                         @if($group->status == 'processing')
                                                         <a href="{{ url('/seller/groups/chat/'.$group->group_id) }}" class="btn btn-outline-success">
@@ -133,15 +133,15 @@
                             </div>
                         </div>
                         @else
-                        <p>Hiện chưa có nhóm mua chung nào.</p>
+                        <p>No groups available yet.</p>
                         @endif
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="card-box mb-30">
-                            <h5 class="pd-20 h5 mb-0">Danh mục</h5>
+                            <h5 class="pd-20 h5 mb-0">Categories</h5>
                             <div class="list-group">
                                 <a href="{{ url('/seller/groups') }}" class="list-group-item d-flex align-items-center justify-content-between {{ request('category') == '' ? 'active' : '' }}">
-                                    Tất cả
+                                    All
                                     <span class="badge badge-primary badge-pill">{{ $groups->total() }}</span>
                                 </a>
                                 @foreach($categories as $category)

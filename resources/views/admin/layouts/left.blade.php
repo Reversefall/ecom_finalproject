@@ -14,21 +14,21 @@
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-person-fill"></span>
-                        <span class="mtext">Tài khoản</span>
+                        <span class="mtext">Accounts</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('admin.users.index') }}">Danh sách</a></li>
-                        <li><a href="{{ route('admin.users.create') }}">Thêm</a></li>
+                        <li><a href="{{ route('admin.users.index') }}">List</a></li>
+                        <li><a href="{{ route('admin.users.create') }}">Add</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-receipt"></span>
-                        <span class="mtext">Đơn hàng</span>
+                        <span class="mtext">Orders</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('admin.orders.index') }}">Danh sách</a></li>
+                        <li><a href="{{ route('admin.orders.index') }}">List</a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,9 +1,9 @@
 @extends('seller.layouts.master')
-@section('page-title', 'Chi tiết nhóm')
+@section('page-title', 'Group Details')
 
 @section('content')
 <style>
-    /* Card chung */
+    /* Common card style */
     .card-box {
         background-color: #fff;
         border-radius: 10px;
@@ -17,7 +17,7 @@
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
-    /* Tiêu đề card */
+    /* Card title */
     .card-box h5 {
         font-size: 18px;
         font-weight: 600;
@@ -26,7 +26,7 @@
         margin-bottom: 15px;
     }
 
-    /* Sản phẩm liên quan */
+    /* Related products */
     .related-product {
         text-align: center;
         transition: transform 0.3s ease;
@@ -57,7 +57,7 @@
         text-align: center;
     }
 
-    /* Các nhóm liên quan */
+    /* Related groups */
     .latest-post ul {
         list-style: none;
         padding: 0;
@@ -105,15 +105,15 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="title">
-                        <h4>Chi tiết nhóm</h4>
+                        <h4>Group Details</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="/">Trang chủ</a>
+                                <a href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Chi tiết nhóm
+                                Group Details
                             </li>
                         </ol>
                     </nav>
@@ -124,7 +124,7 @@
         <div class="blog-wrap">
             <div class="container pd-0">
                 <div class="row">
-                    <!-- Nội dung nhóm -->
+                    <!-- Group Content -->
                     <div class="col-md-8 col-sm-12">
                         <div class="blog-detail card-box overflow-hidden mb-30">
                             <div class="blog-img">
@@ -133,102 +133,44 @@
 
                             <div class="blog-caption">
                                 <h4 class="mb-10">{{ $group->group_name }}</h4>
-                                <p><strong>Người tạo:</strong> {{ $group->creator->full_name ?? 'Không có' }}</p>
-                                <p><strong>Trạng thái:</strong> {{ ucfirst($group->status) }}</p>
+                                <p><strong>Created By:</strong> {{ $group->creator->full_name ?? 'Not available' }}</p>
+                                <p><strong>Status:</strong> {{ ucfirst($group->status) }}</p>
                                 <p>{{ $group->description }}</p>
 
-                                <h4 class="mb-10">Quy Tắc và Lợi Ích Khi Tham Gia Nhóm Mua Chung</h4>
+                                <h4 class="mb-10">Rules and Benefits of Joining a Group Purchase</h4>
 
                                 <p>
-                                    Tham gia nhóm mua chung giúp bạn tiết kiệm chi phí, tận dụng khuyến mãi từ nhà cung cấp,
-                                    và đồng thời tạo cơ hội kết nối với những người có cùng nhu cầu. Dưới đây là các quy tắc và lợi ích chi tiết:
+                                    Joining a group purchase helps you save costs, take advantage of discounts from suppliers, and create opportunities to connect with like-minded people. Below are the detailed rules and benefits:
                                 </p>
 
-                                <h5 class="mb-10">1. Quy tắc chung khi tham gia nhóm</h5>
+                                <h5 class="mb-10">1. General Rules for Joining a Group</h5>
                                 <ul>
-                                    <li>Mỗi nhóm mua chung sẽ có người tạo nhóm (creator) và các thành viên tham gia.</li>
-                                    <li>Thành viên cần đăng ký tham gia nhóm trước khi hết hạn nhóm (deadline).</li>
-                                    <li>Mỗi thành viên cam kết mua số lượng sản phẩm đã đăng ký, không được thay đổi tùy tiện.</li>
-                                    <li>Nhóm chỉ được xác nhận hoàn tất khi đạt số lượng tối thiểu quy định cho ưu đãi.</li>
-                                    <li>Trạng thái nhóm sẽ được cập nhật liên tục: <strong>pending</strong> (chưa đủ thành viên), <strong>processing</strong> (đang giao dịch), <strong>completed</strong> (hoàn tất), <strong>cancelled</strong> (hủy).</li>
+                                    <li>Each group purchase will have a group creator and participating members.</li>
+                                    <li>Members need to register to join the group before the deadline.</li>
+                                    <li>Each member commits to purchasing the number of products they have registered for and cannot change it arbitrarily.</li>
+                                    <li>The group will only be confirmed as completed when the minimum required number for the discount is reached.</li>
+                                    <li>The status of the group will be updated continuously: <strong>pending</strong> (not enough members), <strong>processing</strong> (in progress), <strong>completed</strong> (completed), <strong>cancelled</strong> (cancelled).</li>
                                 </ul>
 
-                                <h5 class="mb-10">2. Lợi ích khi tham gia</h5>
+                                <h5 class="mb-10">2. Benefits of Joining</h5>
                                 <ul>
-                                    <li>Tiết kiệm chi phí nhờ mức giá ưu đãi nhóm mua chung.</li>
-                                    <li>Được giảm giá theo số lượng người tham gia:</li>
+                                    <li>Save costs with group purchase discounts.</li>
+                                    <li>Get discounts based on the number of participants:</li>
                                     <ul>
-                                        <li>5 người tham gia → giảm 10%</li>
-                                        <li>10 người tham gia → giảm 12%</li>
-                                        <li>Mỗi 5 người tăng thêm → giảm thêm 2%</li>
+                                        <li>5 participants → 10% discount</li>
+                                        <li>10 participants → 12% discount</li>
+                                        <li>Each additional 5 participants → an extra 2% discount</li>
                                     </ul>
-                                    <li>Có cơ hội kết nối và giao lưu với những người cùng mua chung sản phẩm.</li>
-                                    <li>Nhận được các khuyến mãi hoặc quà tặng đặc biệt từ nhà cung cấp nếu nhóm đủ điều kiện.</li>
-                                    <li>Quy trình mua minh bạch, được quản lý và theo dõi bởi người tạo nhóm.</li>
+                                    <li>Opportunities to connect and interact with other people joining the group purchase.</li>
+                                    <li>Receive special promotions or gifts from the supplier if the group meets the conditions.</li>
+                                    <li>The purchase process is transparent, managed, and monitored by the group creator.</li>
                                 </ul>
 
-                                <h5 class="mb-10">3. Lưu ý khi tham gia</h5>
+                                <h5 class="mb-10">3. Notes When Joining</h5>
                                 <ul>
-                                    <li>Hãy chắc chắn số lượng mua phù hợp với nhu cầu của bạn trước khi tham gia.</li>
-                                    <li>Tham gia đúng thời gian để nhóm đủ số lượng và nhận ưu đãi.</li>
-                                    <li>Tránh hủy đơn sau khi nhóm đã xác nhận để không ảnh hưởng đến các thành viên khác.</li>
+                                    <li>Make sure the quantity you purchase matches your needs before joining.</li>
+                                    <li>Join within the correct time to ensure the group reaches the required number and the discount is applied.</li>
+                                    <li>Avoid canceling orders after the group has been confirmed to prevent affecting other members.</li>
                                 </ul>
 
                                 <p>
-                                    Khi tham gia nhóm mua chung, bạn vừa tiết kiệm chi phí vừa tận hưởng các quyền lợi cộng đồng.
-                                    Hãy tham khảo các nhóm đang mở để lựa chọn sản phẩm và nhóm phù hợp với nhu cầu của bạn!
-                                </p>
-
-                                @if($group->status !== 'processing')
-                                <button class="btn btn-secondary" disabled>
-                                    Nhóm đã {{ $group->status }}
-                                </button>
-                                @else
-                                <a href="{{ url('/seller/groups/chat/'.$group->group_id) }}" class="btn btn-success">
-                                    Vào đoạn chat nhóm
-                                </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar các nhóm liên quan -->
-                    <div class="col-md-4 col-sm-12">
-                        <div class="card-box mb-30">
-                            <h5 class="mb-10">Sản phẩm</h5>
-                            @if($group->product)
-                            <div class="related-product mb-20 position-relative">
-                                <a href="{{ url('/products/'.$group->product->product_id) }}">
-                                    @if($group->product->images->count() > 0)
-                                    <img src="{{ asset($group->product->images->first()->image_url) }}"
-                                        alt="{{ $group->product->product_name }}" class="w-100" style="max-height:200px; object-fit:cover;">
-                                    @else
-                                    <img src="{{ asset('assets_admin/vendors/images/default-product.png') }}" alt="No image" class="w-100" style="max-height:200px; object-fit:cover;">
-                                    @endif
-                                </a>
-                                <div class="product-badge position-absolute" style="top:10px; right:10px; background:#ff6b6b; color:white; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-weight:bold;">
-                                    {{ $group->members->count() }}
-                                </div>
-                                <div class="mt-2">
-                                    <a href="{{ url('/products/'.$group->product->product_id) }}">
-                                        <h6>{{ $group->product->product_name }}</h6>
-                                    </a>
-                                    <p class="mb-1">Giá: <strong>{{ number_format($group->product->price) }} đ</strong></p>
-                                    <p class="mb-1">Danh mục: {{ $group->product->category->category_name ?? 'Không có' }}</p>
-                                    <p class="mb-1">Người bán: <a href="{{ url('/sellers/'.$group->product->seller->id ?? '#') }}">
-                                            {{ $group->product->seller->full_name ?? 'Ẩn' }}
-                                        </a></p>
-                                    <p class="mb-1">Số lượng tồn: {{ $group->product->current_quantity }}</p>
-                                </div>
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-@endsection

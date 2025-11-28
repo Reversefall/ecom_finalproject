@@ -13,38 +13,38 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="{{ route('seller.dashboard') }}" class="dropdown-toggle no-arrow">
-                        <span class="micon fa fa-home"></span><span class="mtext">Trang chủ</span>
+                        <span class="micon fa fa-home"></span><span class="mtext">Home</span>
                     </a>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-box"></span>
-                        <span class="mtext">Quản lý sản phẩm</span>
+                        <span class="mtext">Product Management</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('seller.products.index') }}">Danh sách</a></li>
-                        <li><a href="{{ route('seller.products.create') }}">Thêm</a></li>
+                        <li><a href="{{ route('seller.products.index') }}">Product List</a></li>
+                        <li><a href="{{ route('seller.products.create') }}">Add New</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-file-text"></span>
-                        <span class="mtext">Quản lý nhóm mua</span>
+                        <span class="mtext">Group Management</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('seller.groups.index') }}">Danh sách nhóm</a></li>
+                        <li><a href="{{ route('seller.groups.index') }}">Group List</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-bag-check"></span>
-                        <span class="mtext">Sản phẩm đã bán</span>
+                        <span class="mtext">Sold Products</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('seller.orders.index') }}">Danh sách</a></li>
+                        <li><a href="{{ route('seller.orders.index') }}">Order List</a></li>
                     </ul>
                 </li>
             </ul>

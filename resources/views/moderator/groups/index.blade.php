@@ -1,6 +1,6 @@
 @extends('moderator.layouts.master')
 
-@section('page-title', 'Quản lý Nhóm Mua Chung')
+@section('page-title', 'Group Purchase Management')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -9,15 +9,15 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Quản lý Nhóm Mua Chung</h4>
+                        <h4>Group Purchase Management</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('moderator.dashboard') }}">Quản trị</a>
+                                <a href="{{ route('moderator.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý Nhóm Mua Chung
+                                Group Purchase Management
                             </li>
                         </ol>
                     </nav>
@@ -27,32 +27,32 @@
 
         @if(session('updateStatus'))
         <div class="alert alert-success">
-            {{ session('message') ?? 'Cập nhật trạng thái thành công!' }}
+            {{ session('message') ?? 'Status updated successfully!' }}
         </div>
         @endif
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Danh sách nhóm</h4>
+                <h4 class="text-blue h4">Group List</h4>
             </div>
             <div class="pb-20">
                 <table class="data-table table stripe hover">
                     <thead>
                         <tr>
-                            <th>ID nhóm</th>
-                            <th>Người tạo</th>
-                            <th>Sản phẩm</th>
-                            <th>Số lượng người</th>
-                            <th>Tiêu đề nhóm</th>
-                            <th>Trạng thái</th>
-                            <th class="datatable no-sort">Hành động</th>
+                            <th>Group ID</th>
+                            <th>Creator</th>
+                            <th>Product</th>
+                            <th>Number of People</th>
+                            <th>Group Title</th>
+                            <th>Status</th>
+                            <th class="datatable no-sort">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($groups as $group)
                         <tr>
                             <td>{{ $group->group_id }}</td>
-                            <td>{{ $group->creator->full_name ?? 'Không có' }}</td>
+                            <td>{{ $group->creator->full_name ?? 'None' }}</td>
                             <td>
                                 @if($group->product)
                                 <a href="{{ url('/products/' . $group->product->product_id) }}" target="_blank" style="display:flex; align-items:center;">
@@ -64,7 +64,7 @@
                                     <span>{{ $group->product->product_name }}</span>
                                 </a>
                                 @else
-                                <span class="text-muted">Không có</span>
+                                <span class="text-muted">None</span>
                                 @endif
                             </td>
                             <td>{{ $group->members->count() }}</td>
@@ -73,10 +73,10 @@
                                 <form action="{{ route('moderator.groups.updateStatus', $group->group_id) }}" method="POST">
                                     @csrf
                                     <select name="status" class="form-control" onchange="this.form.submit()">
-                                        <option value="pending" {{ $group->status == 'pending' ? 'selected' : '' }}>Chờ xác nhận</option>
-                                        <option value="processing" {{ $group->status == 'processing' ? 'selected' : '' }}>Đang thực hiện</option>
-                                        <option value="completed" {{ $group->status == 'completed' ? 'selected' : '' }}>Hoàn thành</option>
-                                        <option value="cancelled" {{ $group->status == 'cancelled' ? 'selected' : '' }}>Đã huỷ</option>
+                                        <option value="pending" {{ $group->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="processing" {{ $group->status == 'processing' ? 'selected' : '' }}>Processing</option>
+                                        <option value="completed" {{ $group->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                                        <option value="cancelled" {{ $group->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                                     </select>
                                 </form>
                             </td>
@@ -87,7 +87,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('moderator.groups.detail', $group->group_id) }}">
-                                            <i class="dw dw-edit2"></i> Chi tiết
+                                            <i class="dw dw-edit2"></i> Details
                                         </a>
                                     </div>
                                 </div>

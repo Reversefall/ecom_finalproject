@@ -1,34 +1,34 @@
 @extends('seller.layouts.master')
 
-@section('page-title', 'Sản phẩm đã bán')
+@section('page-title', 'Products Sold')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
     <div class="min-height-200px">
 
         <div class="page-header">
-            <h4>Sản phẩm đã bán</h4>
+            <h4>Products Sold</h4>
         </div>
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Danh sách sản phẩm đã bán</h4>
+                <h4 class="text-blue h4">List of Products Sold</h4>
             </div>
 
             <div class="pb-20">
                 <table class="data-table table stripe hover">
                     <thead>
                         <tr>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Mã đơn hàng</th>
-                            <th>Tên khách hàng</th>
-                            <th>Số điện thoại</th>
-                            <th>Số lượng</th>
-                            <th>Giá gốc</th>
-                            <th>Giảm (%)</th>
-                            <th>Giá sau giảm</th>
-                            <th>Thành tiền</th>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>PhoneNumber</th>
+                            <th>Amount</th>
+                            <th>Original Price</th>
+                            <th>Discount(%)</th>
+                            <th>Discounted Price</th>
+                            <th>Total Amount</th>
                         </tr>
                     </thead>
 
@@ -46,7 +46,7 @@
                                 <img src="{{ asset($item->product->images->first()->image_url) }}"
                                     width="60" height="60" style="object-fit: cover;">
                                 @else
-                                <span>Không có ảnh</span>
+                                <span>No Image</span>
                                 @endif
                             </td>
 

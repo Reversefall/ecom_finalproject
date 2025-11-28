@@ -1,5 +1,5 @@
 <div class="header">
-<div class="header-left">
+  <div class="header-left">
     <div class="menu-icon bi bi-list"></div>
     <div
         class="search-toggle-icon bi bi-search"
@@ -11,7 +11,7 @@
                 <input
                     type="text"
                     class="form-control search-input"
-                    placeholder="Tìm kiếm" />
+                    placeholder="Search" />
                 <div class="dropdown">
                     <a
                         class="dropdown-toggle no-arrow"
@@ -46,16 +46,16 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <button class="btn btn-primary">Tìm kiếm</button>
+                            <button class="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-</div>
+  </div>
 
-<div class="header-right">
+  <div class="header-right">
     <div class="dashboard-setting user-notification">
         <div class="dropdown">
             <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
@@ -104,12 +104,12 @@
                 <span class="user-icon">
                     <img src="{{ asset('assets_admin/vendors/images/photo1.jpg') }}" alt="" />
                 </span>
-                <span class="user-name">Người kiểm duyệt</span>
+                <span class="user-name">Moderator</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                <a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i>Đăng xuất</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i>Logout</a>
             </div>
         </div>
     </div>
-</div>
+  </div>
 </div>

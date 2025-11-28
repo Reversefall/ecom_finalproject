@@ -56,7 +56,7 @@
         white-space: nowrap;
     }
 </style>
-@section('page-title', 'Quản lý Sản phẩm')
+@section('page-title', 'Product Management')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -65,15 +65,15 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Quản lý Sản phẩm</h4>
+                        <h4>Product Management</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('seller.dashboard') }}">Quản trị</a>
+                                <a href="{{ route('seller.dashboard') }}">Seller</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý Sản phẩm
+                                Product Management
                             </li>
                         </ol>
                     </nav>
@@ -83,33 +83,33 @@
         </div>
 
         @if(session('add'))
-        <div class="alert alert-success">Thêm thành công!</div>
+        <div class="alert alert-success">Added Successfully</div>
         @endif
 
         @if(session('update'))
-        <div class="alert alert-success">Cập nhật thành công!</div>
+        <div class="alert alert-success">Updated Successfully</div>
         @endif
 
         @if(session('updateStatus'))
-        <div class="alert alert-success">Cập nhật trạng thái thành công!</div>
+        <div class="alert alert-success">Status Updated Successfully</div>
         @endif
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Quản lý Sản phẩm</h4>
+                <h4 class="text-blue h4">Product Management</h4>
             </div>
             <div class="pb-20">
                 <table class="data-table table stripe hover">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Ảnh</th> <!-- cột mới -->
-                            <th>Tên sản phẩm</th>
-                            <th>Danh mục</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Trạng thái</th>
-                            <th>Hành động</th>
+                            <th>Image</th> <!-- cột mới -->
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -122,15 +122,15 @@
                             <td>
                                 @if($product->images->count() > 0)
                                 <img src="{{ asset($product->images->first()->image_url) }}"
-                                    alt="Ảnh sản phẩm"
+                                    alt="Product Image"
                                     style="height:50px; object-fit:cover;">
                                 @else
-                                <span class="text-muted">Chưa có</span>
+                                <span class="text-muted">Don't have</span>
                                 @endif
                             </td>
 
                             <td>{{ $product->product_name }}</td>
-                            <td>{{ $product->category->category_name ?? 'Không có' }}</td>
+                            <td>{{ $product->category->category_name ?? 'None' }}</td>
                             <td>{{ number_format($product->price) }} đ</td>
                             <td>{{ $product->current_quantity }}</td>
                             <td>
@@ -147,7 +147,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('seller.products.edit', $product->product_id) }}">
-                                            <i class="dw dw-edit2"></i> Cập nhật
+                                            <i class="dw dw-edit2"></i> Update
                                         </a>
                                     </div>
                                 </div>

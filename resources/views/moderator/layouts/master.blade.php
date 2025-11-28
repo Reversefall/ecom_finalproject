@@ -23,7 +23,7 @@
 
 
     <style>
-        /* Style cho toast container */
+        /* Style for toast container */
         .toast-container {
             position: fixed;
             top: 20px;
@@ -31,7 +31,7 @@
             z-index: 9999;
         }
 
-        /* Style cho mỗi toast */
+        /* Style for each toast */
         .toast {
             display: none;
             min-width: 200px;
@@ -44,28 +44,28 @@
             transition: all 0.3s ease-in-out;
         }
 
-        /* Style cho thông báo thành công */
+        /* Style for success notification */
         .toast.success {
             background-color: #4CAF50;
         }
 
-        /* Style cho thông báo lỗi */
+        /* Style for error notification */
         .toast.error {
             background-color: #f44336;
         }
 
-        /* Style cho thông báo thông tin */
+        /* Style for info notification */
         .toast.info {
             background-color: #2196F3;
         }
 
-        /* Hiển thị toast */
+        /* Show toast */
         .toast.show {
             display: block;
             opacity: 1;
         }
 
-        /* Animation khi toast ẩn */
+        /* Animation for hiding toast */
         .toast.hide {
             opacity: 0;
             transform: translateX(100%);

@@ -1,5 +1,5 @@
 @extends('seller.layouts.master')
-@section('page-title', 'Cập nhật Sản phẩm')
+@section('page-title', 'Product Details')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -10,15 +10,15 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Cập nhật Sản phẩm</h4>
+                        <h4>Product Details</h4>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('seller.dashboard') }}">Trang người bán</a>
+                                <a href="{{ route('seller.dashboard') }}">Seller Page</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Cập nhật Sản phẩm
+                                Product Details
                             </li>
                         </ol>
                     </nav>
@@ -28,7 +28,7 @@
 
         <!-- Form -->
         <div class="pd-20 card-box mb-30">
-            <h4 class="text-blue h4 mb-3">Cập nhật thông tin sản phẩm</h4>
+            <h4 class="text-blue h4 mb-3">Update Product Infomation</h4>
 
             <form action="{{ route('seller.products.update', $product->product_id) }}"
                 method="POST"
@@ -38,7 +38,7 @@
 
                 <!-- Tên -->
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Tên sản phẩm</label>
+                    <label class="col-md-2 col-form-label">Product Name</label>
                     <div class="col-md-10">
                         <input type="text"
                             name="product_name"
@@ -53,7 +53,7 @@
 
                 <!-- Danh mục -->
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Danh mục</label>
+                    <label class="col-md-2 col-form-label">Category</label>
                     <div class="col-md-10">
                         <select class="custom-select col-12" name="category_id">
                             @foreach($categories as $cate)
@@ -72,7 +72,7 @@
 
                 <!-- Giá -->
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Giá</label>
+                    <label class="col-md-2 col-form-label">Price</label>
                     <div class="col-md-10">
                         <input type="number"
                             name="price"
@@ -87,7 +87,7 @@
 
                 <!-- Số lượng -->
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Số lượng</label>
+                    <label class="col-md-2 col-form-label">Amount</label>
                     <div class="col-md-10">
                         <input type="number"
                             name="current_quantity"
@@ -102,7 +102,7 @@
 
                 <!-- Ảnh hiện tại -->
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Ảnh hiện tại</label>
+                    <label class="col-md-2 col-form-label">Image</label>
                     <div class="col-md-10">
                         @if($product->images->count() > 0)
                         <div class="row">
@@ -121,7 +121,7 @@
                             @endforeach
                         </div>
                         @else
-                        <p class="text-muted">Chưa có ảnh</p>
+                        <p class="text-muted">Don't have image yet</p>
                         @endif
                     </div>
                 </div>
@@ -129,7 +129,7 @@
 
                 <!-- Upload ảnh mới -->
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Thêm ảnh mới</label>
+                    <label class="col-md-2 col-form-label">Add new Image</label>
                     <div class="col-md-10">
                         <input type="file" name="images[]" class="form-control" multiple>
 
@@ -142,8 +142,8 @@
                 <!-- Buttons -->
                 <div class="form-group row">
                     <div class="col-md-10 offset-md-2">
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
-                        <a href="{{ route('seller.products.index') }}" class="btn btn-secondary">Hủy</a>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('seller.products.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
 @section('scripts')
 <script>
     function deleteImage(imageId) {
-        if (!confirm('Bạn có chắc muốn xóa ảnh này?')) return;
+        if (!confirm('Are you sure you want to delete the image?')) return;
 
         fetch(`/seller/products/images/${imageId}`, {
                 method: 'DELETE',
@@ -167,7 +167,7 @@
                 }
             })
             .then(response => {
-                if (!response.ok) throw new Error('Xóa thất bại');
+                if (!response.ok) throw new Error('Delete image failed');
                 return response.json();
             })
             .then(data => {

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('page-title', 'Quản lý Tài Khoản')
+@section('page-title', 'Account Management')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -8,15 +8,15 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Quản lý Tài Khoản</h4>
+                        <h4>Account Management</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('admin.dashboard') }}">Trang quản trị</a>
+                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý Tài Khoản
+                                Account Management
                             </li>
                         </ol>
                     </nav>
@@ -24,21 +24,22 @@
             </div>
         </div>
 
-        <!-- Employee Form -->
+        <!-- Add Account Form -->
         <div class="pd-20 card-box mb-30">
             <div class="clearfix">
                 <div class="pull-left">
-                    <h4 class="text-blue h4">Thêm Tài Khoản</h4>
+                    <h4 class="text-blue h4">Add Account</h4>
                 </div>
             </div>
             <form action="{{ route('admin.users.store') }}" method="POST" class="form">
                 @csrf
 
+                <!-- Username -->
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label" for="username">Tên đăng nhập</label>
+                    <label class="col-sm-12 col-md-2 col-form-label" for="username">Username</label>
                     <div class="col-sm-12 col-md-10">
                         <input type="text" name="username" id="username" class="form-control"
-                            placeholder="Nhập họ tên" value="{{ old('username') }}">
+                            placeholder="Enter username" value="{{ old('username') }}">
 
                         @error('username')
                         <p class="text-danger">{{ $message }}</p>
@@ -46,11 +47,12 @@
                     </div>
                 </div>
 
+                <!-- Full Name -->
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label" for="full_name">Họ tên</label>
+                    <label class="col-sm-12 col-md-2 col-form-label" for="full_name">Full Name</label>
                     <div class="col-sm-12 col-md-10">
                         <input type="text" name="full_name" id="full_name" class="form-control"
-                            placeholder="Nhập họ tên" value="{{ old('full_name') }}">
+                            placeholder="Enter full name" value="{{ old('full_name') }}">
 
                         @error('full_name')
                         <p class="text-danger">{{ $message }}</p>
@@ -58,11 +60,12 @@
                     </div>
                 </div>
 
+                <!-- Email -->
                 <div class="form-group row">
                     <label class="col-sm-12 col-md-2 col-form-label" for="email">Email</label>
                     <div class="col-sm-12 col-md-10">
                         <input type="email" name="email" id="email" class="form-control"
-                            placeholder="Nhập email" value="{{ old('email') }}">
+                            placeholder="Enter email" value="{{ old('email') }}">
 
                         @error('email')
                         <p class="text-danger">{{ $message }}</p>
@@ -70,11 +73,12 @@
                     </div>
                 </div>
 
-                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label" for="phone_number">Số điện thoại</label>
+                <!-- Phone Number -->
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label" for="phone_number">Phone Number</label>
                     <div class="col-sm-12 col-md-10">
                         <input type="text" name="phone_number" id="phone_number" class="form-control"
-                            placeholder="Nhập số điện thoại" value="{{ old('phone_number') }}">
+                            placeholder="Enter phone number" value="{{ old('phone_number') }}">
 
                         @error('phone_number')
                         <p class="text-danger">{{ $message }}</p>
@@ -82,11 +86,12 @@
                     </div>
                 </div>
 
+                <!-- Password -->
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label" for="password">Mật khẩu</label>
+                    <label class="col-sm-12 col-md-2 col-form-label" for="password">Password</label>
                     <div class="col-sm-12 col-md-10">
                         <input type="password" name="password" id="password" class="form-control"
-                            placeholder="Nhập mật khẩu">
+                            placeholder="Enter password">
 
                         @error('password')
                         <p class="text-danger">{{ $message }}</p>
@@ -94,15 +99,16 @@
                     </div>
                 </div>
 
+                <!-- Role -->
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label" for="role">Quyền</label>
+                    <label class="col-sm-12 col-md-2 col-form-label" for="role">Role</label>
                     <div class="col-sm-12 col-md-10">
                         <select name="role" id="role" class="custom-select col-12">
-                            <option disabled selected>-- Chọn quyền --</option>
+                            <option disabled selected>-- Select Role --</option>
                             <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="moderator" {{ old('role') == 'moderator' ? 'selected' : '' }}>Người kiểm duyệt</option>
-                            <option value="seller" {{ old('role') == 'seller' ? 'selected' : '' }}>Người bán</option>
-                            <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>Khách hàng</option>
+                            <option value="moderator" {{ old('role') == 'moderator' ? 'selected' : '' }}>Moderator</option>
+                            <option value="seller" {{ old('role') == 'seller' ? 'selected' : '' }}>Seller</option>
+                            <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>Customer</option>
                         </select>
 
                         @error('role')
@@ -111,10 +117,11 @@
                     </div>
                 </div>
 
+                <!-- Buttons -->
                 <div class="form-group row">
                     <div class="col-sm-12 col-md-10 offset-md-2">
-                        <button type="submit" class="btn btn-primary">Lưu tài khoản</button>
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Hủy</a>
+                        <button type="submit" class="btn btn-primary">Save Account</button>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
 
