@@ -1,19 +1,19 @@
 @extends('user.layouts.master')
-@section('page-title', 'Trang sản phẩm')
+@section('page-title', 'Product Page')
 
 @section('content')
 <section id="page-header">
-    <h2>Sản phẩm</h2>
-    <p>Mua chung để có cơ hội giảm 10%!</p>
+    <h2>Product</h2>
+    <p>Group Buy for 10% off!</p>
 </section>
 <section id="search-filter" class="section-p1">
     <div class="search-box">
-        <input type="text" id="searchName" placeholder="Tìm theo tên sản phẩm...">
+        <input type="text" id="searchName" placeholder="Search Products...">
     </div>
 
     <div class="category-filter">
         <select id="searchCategory">
-            <option value="">Tất cả danh mục</option>
+            <option value="">All Category</option>
             @foreach($categories as $cate)
             <option value="{{ $cate->category_name }}">{{ $cate->category_name }}</option>
             @endforeach
@@ -32,7 +32,7 @@
             <img src="{{ asset($product->images->first()->image_url ?? 'assets/images/no-image.png') }}" alt="">
 
             <div class="des">
-                <span>{{ $product->category->category_name ?? 'Không phân loại' }}</span>
+                <span>{{ $product->category->category_name ?? 'No Classification' }}</span>
 
                 <h5>{{ $product->product_name }}</h5>
 

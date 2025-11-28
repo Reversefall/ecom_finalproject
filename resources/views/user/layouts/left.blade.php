@@ -14,14 +14,14 @@
                 <li>
                     <a href="/" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-compass"></span>
-                        <span class="mtext">Khám phá</span>
+                        <span class="mtext">Explore</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="/groups" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-file-text"></span>
-                        <span class="mtext">Nhóm mua</span>
+                        <span class="mtext">Group Buy</span>
                     </a>
                 </li>
                
@@ -29,7 +29,7 @@
                 <li>
                     <a href="/user/groups" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-people"></span>
-                        <span class="mtext">Nhóm của tôi</span>
+                        <span class="mtext">My Group</span>
                     </a>
                 </li>
                 @endif

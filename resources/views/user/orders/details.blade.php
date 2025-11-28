@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('page-title', 'Chi tiết đơn hàng')
+@section('page-title', 'Order Details')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -8,18 +8,18 @@
         <div class="page-header mb-20">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
-                    <h4 class="title">Chi tiết đơn hàng</h4>
+                    <h4 class="title">Order Details</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('index') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Chi tiết đơn hàng</li>
+                            <li class="breadcrumb-item"><a href="{{ route('index') }}">main Page</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Order Details</li>
                         </ol>
                     </nav>
                 </div>
 
                 <div class="col-md-6 col-sm-12 text-right">
                     <a href="{{ route('user.orders.index') }}" class="btn btn-secondary mb-3 ">
-                        &larr; Quay lại
+                        &larr; Back
                     </a>
                 </div>
             </div>
@@ -28,19 +28,19 @@
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Hóa đơn - Đơn hàng #{{ $order->order_id }}</h4>
-                <p>Ngày đặt: {{ \Carbon\Carbon::parse($order->order_date)->format('d/m/Y H:i') }}</p>
-                <p>Trạng thái: <strong>{{ ucfirst($order->status) }}</strong></p>
+                <h4 class="text-blue h4">Invoice - Order #{{ $order->order_id }}</h4>
+                <p>Date Order {{ \Carbon\Carbon::parse($order->order_date)->format('d/m/Y H:i') }}</p>
+                <p>Status <strong>{{ ucfirst($order->status) }}</strong></p>
             </div>
 
 
 
 
             <div class="pd-20">
-                <h5>Thông tin người nhận</h5>
+                <h5>Buyer Infomation</h5>
                 <table class="table table-bordered">
                     <tr>
-                        <th>Họ tên</th>
+                        <th>FullName</th>
                         <td>{{ $order->full_name }}</td>
                     </tr>
                     <tr>
@@ -48,26 +48,27 @@
                         <td>{{ $order->email }}</td>
                     </tr>
                     <tr>
-                        <th>Điện thoại</th>
+                        <th>PhoneNumber</th>
                         <td>{{ $order->phone }}</td>
                     </tr>
                     <tr>
-                        <th>Địa chỉ</th>
+                        <th>Address</th>
                         <td>{{ $order->address }}</td>
                     </tr>
                 </table>
 
-                <h5 class="mt-4">Chi tiết sản phẩm</h5>
+                <h5 class="mt-4">Order Details</h5>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Đơn giá</th>
-                            <th>Số lượng</th>
-                            <th>Giảm giá</th>
-                            <th>Giá sau giảm</th>
-                            <th>Tổng</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Group</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Price after discount</th>
+                                <th>Amount</th>
+                                <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,17 +101,17 @@
                 </table>
 
                 <div class="text-right mt-3">
-                    <h5>Tổng cộng: {{ number_format($total) }} đ</h5>
+                    <h5>Total : {{ number_format($total) }} đ</h5>
                 </div>
 
                 @if($order->payments->count())
-                <h5 class="mt-4">Thanh toán đã thực hiện</h5>
+                <h5 class="mt-4">Payment Successful</h5>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Ngày</th>
-                            <th>Số tiền</th>
-                            <th>Trạng thái</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>

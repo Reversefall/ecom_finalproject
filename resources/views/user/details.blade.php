@@ -51,7 +51,7 @@
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="/">Main Page</a></li>
                             <li class="breadcrumb-item active">{{ $product->product_name }}</li>
                         </ol>
                     </nav>
@@ -87,7 +87,7 @@
                     <div class="product-detail-desc pd-20 card-box height-100-p">
                         <h4 class="mb-20 pt-20">{{ $product->product_name }}</h4>
 
-                        <p>{{ $product->description ?? 'Không có mô tả cho sản phẩm này' }}</p>
+                        <p>{{ $product->description ?? 'This product has no details' }}</p>
 
                         <div class="price">
                             <ins>{{ number_format($product->price,0,',','.') }} ₫</ins>
@@ -95,17 +95,17 @@
 
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <a href="/user/groups/create/{{ $product->product_id }}" class="btn btn-primary btn-block">Tạo Nhóm Mua Chung</a>
+                                <a href="/user/groups/create/{{ $product->product_id }}" class="btn btn-primary btn-block">Create</a>
                             </div>
                             <div class="col-md-6 col-6">
-                                <a href="/detailSeller/{{ $product->seller_id }}" class="btn btn-outline-primary btn-block">Xem Người Bán</a>
+                                <a href="/detailSeller/{{ $product->seller_id }}" class="btn btn-outline-primary btn-block">See the seller</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h4 class="mb-20">Các Nhóm Mua Chung Của Sản Phẩm Này</h4>
+        <h4 class="mb-20">All the Group Buy for this Product</h4>
 
         @if($product->groups->count() > 0)
         <div class="product-list">
@@ -132,9 +132,9 @@
                                 </a>
                             </h4>
                             <div class="price">
-                                Người tạo: {{ $group->creator->full_name ?? 'Không có' }}
+                                Creator : {{ $group->creator->full_name ?? 'Không có' }}
                             </div>
-                            <a href="{{ url('/groups/'.$group->group_id) }}" class="btn btn-outline-primary">Xem Nhóm</a>
+                            <a href="{{ url('/groups/'.$group->group_id) }}" class="btn btn-outline-primary">See the group</a>
                         </div>
                     </div>
 
@@ -143,7 +143,7 @@
             </ul>
         </div>
         @else
-        <p>Hiện chưa có nhóm mua chung cho sản phẩm này.</p>
+        <p>This product currently has no group buy.</p>
         @endif
     </div>
 </div>

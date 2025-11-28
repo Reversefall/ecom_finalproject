@@ -7,11 +7,11 @@
         <div class="page-header mb-20">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
-                    <h4 class="title">Lịch sử đơn hàng</h4>
+                    <h4 class="title">Order History</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('index') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Lịch sử đơn hàng</li>
+                            <li class="breadcrumb-item"><a href="{{ route('index') }}">Main Page</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Order History</li>
                         </ol>
                     </nav>
                 </div>
@@ -20,20 +20,20 @@
 
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">Danh sách đơn hàng</h4>
+                <h4 class="text-blue h4">Order List</h4>
             </div>
             <div class="pb-20">
                 <table class="data-table table stripe hover">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Ngày mua</th>
-                            <th>Tên người nhận</th>
-                            <th>Số điện thoại</th>
-                            <th>Thành tiền</th>
-                            <th>Trạng thái</th>
-                            <th>Số tiền đã thanh toán</th>
-                            <th>Hành động</th>
+                            <th>Buy Date</th>
+                            <th>Name</th>
+                            <th>PhoneNumber</th>
+                            <th>Pricen</th>
+                            <th>Status</th>
+                            <th>Amount already paid</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +53,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('user.orders.detail', $order->order_id) }}">
-                                            <i class="dw dw-eye"></i> Chi tiết
+                                            <i class="dw dw-eye"></i> Details
                                         </a>
                                         <a href="#"
                                             class="dropdown-item text-success"
@@ -61,7 +61,7 @@
                                             data-target="#paymentModal"
                                             data-order-id="{{ $order->order_id }}"
                                             data-max="{{ $order->total_amount - $order->payments->sum('amount_paid') }}">
-                                            <i class="dw dw-credit-card"></i> Thanh toán
+                                            <i class="dw dw-credit-card"></i> Payment
                                         </a>
                                     </div>
                                 </div>
@@ -83,21 +83,21 @@
             <input type="hidden" name="order_id" id="modal_order_id">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="paymentModalLabel">Thanh toán đơn hàng</h5>
+                    <h5 class="modal-title" id="paymentModalLabel">Order payment</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="amount_paid">Số tiền thanh toán (VND)</label>
+                        <label for="amount_paid">Amount Payment (VND)</label>
                         <input type="number" class="form-control" name="amount_paid" id="modal_amount_paid" min="1" required>
-                        <small class="form-text text-muted">Số tiền tối đa: <span id="maxAmountText"></span> đ</small>
+                        <small class="form-text text-muted">Total Amount : <span id="maxAmountText"></span> đ</small>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </div>
             </div>
         </form>

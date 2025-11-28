@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('page-title', 'Trang chủ')
+@section('page-title', 'Main Page')
 
 @section('content')
 <div class="pd-ltr-20 xs-pd-20-10">
@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="title">
-                        <h4>Trang chủ</h4>
+                        <h4>Main Page</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                                 <a href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Trang chủ
+                                Main Page
                             </li>
                         </ol>
                     </nav>
@@ -45,7 +45,7 @@
                                 </div>
 
                                 <a href="{{ route('products.detail', $product->product_id) }}" class="btn btn-outline-primary">
-                                    Xem chi tiết
+                                    More Details
                                 </a>
 
                             </div>
