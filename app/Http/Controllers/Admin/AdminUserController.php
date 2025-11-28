@@ -26,7 +26,7 @@ class AdminUserController extends Controller
             'full_name'      => 'required|string|max:255',
             'email'     => 'required|email|unique:users,email',
             'phone_number'     => 'nullable|string|max:20',
-            'role'    => 'nullable|in:admin,moderator,seller,user',
+            'role'    => 'nullable|in:admin,seller,user',
             'password'  => 'required|min:6',
         ]);
 

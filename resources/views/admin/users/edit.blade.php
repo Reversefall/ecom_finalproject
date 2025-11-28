@@ -94,7 +94,6 @@
                         <select name="role" class="custom-select col-12">
                             <option disabled>-- Select Role --</option>
                             <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="moderator" {{ old('role', $user->role) == 'moderator' ? 'selected' : '' }}>Moderator</option>
                             <option value="seller" {{ old('role', $user->role) == 'seller' ? 'selected' : '' }}>Seller</option>
                             <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>Customer</option>
                         </select>

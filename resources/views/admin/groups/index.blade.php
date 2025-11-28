@@ -1,4 +1,4 @@
-@extends('moderator.layouts.master')
+@extends('admin.layouts.master')
 
 @section('page-title', 'Group Purchase Management')
 
@@ -14,7 +14,7 @@
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('moderator.dashboard') }}">Dashboard</a>
+                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Group Purchase Management
@@ -70,7 +70,7 @@
                             <td>{{ $group->members->count() }}</td>
                             <td>{{ $group->group_name }}</td>
                             <td>
-                                <form action="{{ route('moderator.groups.updateStatus', $group->group_id) }}" method="POST">
+                                <form action="{{ route('admin.groups.updateStatus', $group->group_id) }}" method="POST">
                                     @csrf
                                     <select name="status" class="form-control" onchange="this.form.submit()">
                                         <option value="pending" {{ $group->status == 'pending' ? 'selected' : '' }}>Pending</option>
@@ -86,7 +86,7 @@
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('moderator.groups.detail', $group->group_id) }}">
+                                        <a class="dropdown-item" href="{{ route('admin.groups.detail', $group->group_id) }}">
                                             <i class="dw dw-edit2"></i> Details
                                         </a>
                                     </div>

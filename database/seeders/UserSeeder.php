@@ -38,15 +38,5 @@ class UserSeeder extends Seeder
             'role' => 'user',
             'status' => 1
         ]);
-
-        User::create([
-            'username' => 'moderator',
-            'full_name' => 'Moderator User',
-            'email' => 'moderator@gmail.com',
-            'phone_number' => '0123456792',
-            'password' => '123456',
-            'role' => 'moderator',
-            'status' => 1
-        ]);
     }
 }

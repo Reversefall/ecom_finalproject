@@ -106,7 +106,6 @@
                         <select name="role" id="role" class="custom-select col-12">
                             <option disabled selected>-- Select Role --</option>
                             <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="moderator" {{ old('role') == 'moderator' ? 'selected' : '' }}>Moderator</option>
                             <option value="seller" {{ old('role') == 'seller' ? 'selected' : '' }}>Seller</option>
                             <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>Customer</option>
                         </select>
