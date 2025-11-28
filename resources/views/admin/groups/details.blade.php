@@ -1,4 +1,4 @@
-@extends('moderator.layouts.master')
+@extends('admin.layouts.master')
 
 @section('page-title', 'Group Details')
 
@@ -11,10 +11,10 @@
         </div>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('moderator.dashboard') }}">Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('moderator.groups.index') }}">Group Purchase Management</a>
+                <a href="{{ route('admin.groups.index') }}">Group Purchase Management</a>
             </li>
             <li class="breadcrumb-item active">Group Details</li>
         </ol>

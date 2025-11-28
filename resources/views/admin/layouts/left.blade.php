@@ -24,6 +24,16 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-box"></span>
+                        <span class="mtext">Group Approval</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('admin.groups.index') }}">List</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-receipt"></span>
                         <span class="mtext">Orders</span>
                     </a>

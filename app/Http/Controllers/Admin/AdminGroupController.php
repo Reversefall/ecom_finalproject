@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Moderator;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use Illuminate\Http\Request;
-class ModeratorGroupController extends Controller
+class AdminGroupController extends Controller
 {
     public function index()
     {
         $groups = Group::with('members')->get();
-        return view('moderator.groups.index', compact('groups'));
+        return view('admin.groups.index', compact('groups'));
     }
 
     public function detail($id)
     {
         $group = Group::with('members')->findOrFail($id);
-        return view('moderator.groups.details', compact('group'));
+        return view('admin.groups.details', compact('group'));
     }
 
     public function updateStatus(Request $request, $id)
@@ -29,7 +29,7 @@ class ModeratorGroupController extends Controller
         $group->status = $request->status;
         $group->save();
 
-        return redirect()->route('moderator.groups.index')
+        return redirect()->route('admin.groups.index')
             ->with('updateStatus', true)
             ->with('message', 'Trạng thái nhóm đã được cập nhật.');
     }
