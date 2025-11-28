@@ -1,9 +1,9 @@
 @extends('seller.layouts.master')
-@section('page-title', 'Group Details')
+@section('page-title', 'Chi tiết nhóm')
 
 @section('content')
 <style>
-    /* Common card style */
+    /* Card chung */
     .card-box {
         background-color: #fff;
         border-radius: 10px;
@@ -17,7 +17,7 @@
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
-    /* Card title */
+    /* Tiêu đề card */
     .card-box h5 {
         font-size: 18px;
         font-weight: 600;
@@ -26,7 +26,7 @@
         margin-bottom: 15px;
     }
 
-    /* Related products */
+    /* Sản phẩm liên quan */
     .related-product {
         text-align: center;
         transition: transform 0.3s ease;
@@ -57,7 +57,7 @@
         text-align: center;
     }
 
-    /* Related groups */
+    /* Các nhóm liên quan */
     .latest-post ul {
         list-style: none;
         padding: 0;
@@ -124,7 +124,7 @@
         <div class="blog-wrap">
             <div class="container pd-0">
                 <div class="row">
-                    <!-- Group Content -->
+                    <!-- Nội dung nhóm -->
                     <div class="col-md-8 col-sm-12">
                         <div class="blog-detail card-box overflow-hidden mb-30">
                             <div class="blog-img">
@@ -133,44 +133,101 @@
 
                             <div class="blog-caption">
                                 <h4 class="mb-10">{{ $group->group_name }}</h4>
-                                <p><strong>Created By:</strong> {{ $group->creator->full_name ?? 'Not available' }}</p>
+                                <p><strong>Creator:</strong> {{ $group->creator->full_name ?? 'Not available' }}</p>
                                 <p><strong>Status:</strong> {{ ucfirst($group->status) }}</p>
                                 <p>{{ $group->description }}</p>
 
-                                <h4 class="mb-10">Rules and Benefits of Joining a Group Purchase</h4>
+                                <h4 class="mb-10">Rules and Benefits of Joining Group Buy</h4>
 
                                 <p>
-                                    Joining a group purchase helps you save costs, take advantage of discounts from suppliers, and create opportunities to connect with like-minded people. Below are the detailed rules and benefits:
+                                    Joining a group buy helps you save costs, take advantage of promotions from suppliers,
+                                    and creates an opportunity to connect with like-minded people. Below are the detailed rules and benefits:
                                 </p>
 
-                                <h5 class="mb-10">1. General Rules for Joining a Group</h5>
+                                <h5 class="mb-10">1. General Rules for Joining the Group</h5>
                                 <ul>
-                                    <li>Each group purchase will have a group creator and participating members.</li>
-                                    <li>Members need to register to join the group before the deadline.</li>
-                                    <li>Each member commits to purchasing the number of products they have registered for and cannot change it arbitrarily.</li>
-                                    <li>The group will only be confirmed as completed when the minimum required number for the discount is reached.</li>
-                                    <li>The status of the group will be updated continuously: <strong>pending</strong> (not enough members), <strong>processing</strong> (in progress), <strong>completed</strong> (completed), <strong>cancelled</strong> (cancelled).</li>
+                                    <li>Each group buy has a group creator and participating members.</li>
+                                    <li>Members must register before the group deadline.</li>
+                                    <li>Each member commits to purchasing the specified quantity of products, which cannot be changed without prior agreement.</li>
+                                    <li>The group will only be confirmed as completed when the minimum required number of members is reached for the discount.</li>
+                                    <li>Group statuses are continuously updated: <strong>pending</strong> (not enough members), <strong>processing</strong> (ongoing transactions), <strong>completed</strong> (completed), <strong>cancelled</strong> (cancelled).</li>
                                 </ul>
 
                                 <h5 class="mb-10">2. Benefits of Joining</h5>
                                 <ul>
-                                    <li>Save costs with group purchase discounts.</li>
-                                    <li>Get discounts based on the number of participants:</li>
+                                    <li>Save costs with group buy discounts.</li>
+                                    <li>Discounts based on the number of participants:</li>
                                     <ul>
                                         <li>5 participants → 10% discount</li>
                                         <li>10 participants → 12% discount</li>
-                                        <li>Each additional 5 participants → an extra 2% discount</li>
+                                        <li>Every additional 5 participants → additional 2% discount</li>
                                     </ul>
-                                    <li>Opportunities to connect and interact with other people joining the group purchase.</li>
-                                    <li>Receive special promotions or gifts from the supplier if the group meets the conditions.</li>
-                                    <li>The purchase process is transparent, managed, and monitored by the group creator.</li>
+                                    <li>Opportunity to connect and socialize with people who are buying the same product.</li>
+                                    <li>Receive promotions or special gifts from suppliers if the group meets the required conditions.</li>
+                                    <li>The purchase process is transparent and managed by the group creator.</li>
                                 </ul>
 
                                 <h5 class="mb-10">3. Notes When Joining</h5>
                                 <ul>
                                     <li>Make sure the quantity you purchase matches your needs before joining.</li>
-                                    <li>Join within the correct time to ensure the group reaches the required number and the discount is applied.</li>
-                                    <li>Avoid canceling orders after the group has been confirmed to prevent affecting other members.</li>
+                                    <li>Join on time so the group reaches the minimum number of members for the discount.</li>
+                                    <li>Avoid canceling your order after the group is confirmed to avoid affecting other members.</li>
                                 </ul>
 
                                 <p>
+                                    By joining a group buy, you not only save money but also enjoy the community benefits. Explore open groups to choose the products and groups that best meet your needs!
+                                </p>
+
+                                @if($group->status !== 'processing')
+                                <button class="btn btn-secondary" disabled>
+                                    The group is {{ $group->status }}
+                                </button>
+                                @else
+                                <a href="{{ url('/seller/groups/chat/'.$group->group_id) }}" class="btn btn-success">
+                                    Join the group chat
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar các nhóm liên quan -->
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card-box mb-30">
+                            <h5 class="mb-10">Product</h5>
+                            @if($group->product)
+                            <div class="related-product mb-20 position-relative">
+                                <a href="{{ url('/products/'.$group->product->product_id) }}">
+                                    @if($group->product->images->count() > 0)
+                                    <img src="{{ asset($group->product->images->first()->image_url) }}"
+                                        alt="{{ $group->product->product_name }}" class="w-100" style="max-height:200px; object-fit:cover;">
+                                    @else
+                                    <img src="{{ asset('assets_admin/vendors/images/default-product.png') }}" alt="No image" class="w-100" style="max-height:200px; object-fit:cover;">
+                                    @endif
+                                </a>
+                                <div class="product-badge position-absolute" style="top:10px; right:10px; background:#ff6b6b; color:white; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-weight:bold;">
+                                    {{ $group->members->count() }}
+                                </div>
+                                <div class="mt-2">
+                                    <a href="{{ url('/products/'.$group->product->product_id) }}">
+                                        <h6>{{ $group->product->product_name }}</h6>
+                                    </a>
+                                    <p class="mb-1">Giá: <strong>{{ number_format($group->product->price) }} đ</strong></p>
+                                    <p class="mb-1">Danh mục: {{ $group->product->category->category_name ?? 'Không có' }}</p>
+                                    <p class="mb-1">Người bán: <a href="{{ url('/sellers/'.$group->product->seller->id ?? '#') }}">
+                                            {{ $group->product->seller->full_name ?? 'Ẩn' }}
+                                        </a></p>
+                                    <p class="mb-1">Số lượng tồn: {{ $group->product->current_quantity }}</p>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@endsection

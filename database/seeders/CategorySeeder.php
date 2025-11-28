@@ -14,28 +14,24 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'category_name' => 'Điện thoại',
-                'category_desc' => 'Các loại điện thoại thông minh và phụ kiện',
-
+                'category_name' => 'Mobile Phones',
+                'category_desc' => 'Various types of smartphones and accessories',
             ],
             [
-                'category_name' => 'Quần áo',
-                'category_desc' => 'Thời trang nam, nữ và trẻ em',
-
+                'category_name' => 'Clothing',
+                'category_desc' => 'Fashion for men, women, and children',
             ],
             [
-                'category_name' => 'Đồ chơi',
-                'category_desc' => 'Đồ chơi cho trẻ em các loại',
-
+                'category_name' => 'Toys',
+                'category_desc' => 'Toys for children of all kinds',
             ],
             [
-                'category_name' => 'Mỹ phẩm',
-                'category_desc' => 'Sản phẩm làm đẹp, chăm sóc da và trang điểm',
+                'category_name' => 'Cosmetics',
+                'category_desc' => 'Beauty products, skincare, and makeup',
             ],
             [
-                'category_name' => 'Mô hình',
-                'category_desc' => 'Mô hình xe, mô hình nhân vật, đồ sưu tầm',
-
+                'category_name' => 'Models',
+                'category_desc' => 'Model cars, character models, and collectibles',
             ],
         ];
 
